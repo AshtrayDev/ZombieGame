@@ -6,9 +6,11 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] float chaseRange;
     [SerializeField] float attackRange;
 
     NavMeshAgent navMeshAgent;
+    bool isProvoked = false;
     float currentDistanceFromTarget = Mathf.Infinity;
 
     // Start is called before the first frame update
@@ -22,14 +24,49 @@ public class EnemyAI : MonoBehaviour
     {
         currentDistanceFromTarget = Vector3.Distance(target.position, transform.position);
 
-        if (currentDistanceFromTarget < attackRange)
+        if (isProvoked)
         {
-            navMeshAgent.SetDestination(target.position);
+            EngageTarget();
         }
 
-        else
+        else if (currentDistanceFromTarget < chaseRange)
         {
-            navMeshAgent.SetDestination(transform.position);
+            isProvoked = true;
+            EngageTarget();   
         }
+    }
+
+    void EngageTarget()
+    {
+        navMeshAgent.SetDestination(target.position);
+
+        if (navMeshAgent.remainingDistance > attackRange) 
+        {
+            ChaseTarget();
+        }
+
+        else if (navMeshAgent.remainingDistance <= attackRange)
+        {
+            AttackTarget();
+        }
+    }
+
+    void ChaseTarget()
+    {
+        navMeshAgent.SetDestination(target.position);
+        GetComponent<Animator>().SetBool("attack", false);
+        GetComponent<Animator>().SetTrigger("move");
+    }
+
+    void AttackTarget()
+    {
+        print("Attacking!");
+        GetComponent<Animator>().SetBool("attack", true);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
 }
