@@ -6,8 +6,9 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] float chaseRange;
-    [SerializeField] float attackRange;
+    [SerializeField] float chaseRange = 5;
+    [SerializeField] float attackRange = 2;
+    [SerializeField] float turnSpeed = 2;
 
     NavMeshAgent navMeshAgent;
     bool isProvoked = false;
@@ -39,6 +40,7 @@ public class EnemyAI : MonoBehaviour
     void EngageTarget()
     {
         navMeshAgent.SetDestination(target.position);
+        FaceTarget();
 
         if (navMeshAgent.remainingDistance > attackRange) 
         {
@@ -58,9 +60,15 @@ public class EnemyAI : MonoBehaviour
         GetComponent<Animator>().SetTrigger("move");
     }
 
+    void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+    }
+
     void AttackTarget()
     {
-        print("Attacking!");
         GetComponent<Animator>().SetBool("attack", true);
     }
 
