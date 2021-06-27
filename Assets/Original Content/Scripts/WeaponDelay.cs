@@ -5,22 +5,48 @@ using UnityEngine;
 public class WeaponDelay : MonoBehaviour
 {
     List<Weapon> weapons = new List<Weapon>();
+    List<bool> weaponDelays = new List<bool>();
 
     private void Start()
     {
-        RefreshWeaponsList();
+        RefreshLists();
     }
 
-    private void RefreshWeaponsList()
+    private void RefreshLists()
     {
         foreach(Transform weapon in transform)
         {
             weapons.Add(weapon.GetComponent<Weapon>());
+            weaponDelays.Add(false);
         }
     }
 
-    IEnumerator StartDelay(int weaponIndex)
+    IEnumerator DelayWeapon(int weaponIndex, float shotDelay)
     {
-        yield return new WaitForSeconds(1f);
+        weaponDelays[weaponIndex] = true;
+        yield return new WaitForSeconds(shotDelay);
+        weaponDelays[weaponIndex] = false;
+    }
+
+    public bool CanWeaponShoot(Weapon weapon)
+    {
+        int weaponIndex = weapons.IndexOf(weapon);
+
+        if (weaponDelays[weaponIndex] == true)
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
+
+    }
+
+    public void StartDelay(Weapon weapon)
+    {
+        int weaponIndex = weapons.IndexOf(weapon);
+        StartCoroutine(DelayWeapon(weaponIndex, weapon.GetShotDelay()));
     }
 }

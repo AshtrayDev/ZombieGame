@@ -12,7 +12,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] Ammo ammoSlot;
     [SerializeField] int ammoCost = 1;
     [SerializeField] float shotDelay = 0.5f;
-    [SerializeField] bool isWeaponDelayed;
+
+    WeaponDelay weaponDelay;
+
+    private void Start()
+    {
+        weaponDelay = GetComponentInParent<WeaponDelay>();
+    }
 
     void Update()
     {
@@ -24,7 +30,7 @@ public class Weapon : MonoBehaviour
 
     void CanWeaponShoot()
     {
-        if(ammoSlot.GetCurrentAmmo() > 0 && !isWeaponDelayed)
+        if(ammoSlot.GetCurrentAmmo() > 0 && weaponDelay.CanWeaponShoot(this))
         {
             Shoot();
         }
@@ -37,19 +43,12 @@ public class Weapon : MonoBehaviour
         MuzzleFlash();
         ammoSlot.ReduceCurrentAmmo(ammoCost);
         RaycastHit hit = ProcessRaycast();
-        StartCoroutine(ShootDelay());
+        weaponDelay.StartDelay(this);
 
         if (hit.transform == null) { return; }
 
         InstantiateHitEffect(hit);
         ProcessDamage(hit);
-    }
-
-    IEnumerator ShootDelay()
-    {
-        isWeaponDelayed = true;
-        yield return new WaitForSeconds(shotDelay);
-        isWeaponDelayed = false;
     }
 
     RaycastHit ProcessRaycast()
@@ -80,8 +79,8 @@ public class Weapon : MonoBehaviour
         Destroy(impact, 1f);
     }
 
-    public void OnWeaponReset()
+    public float GetShotDelay()
     {
-        isWeaponDelayed = false;
+        return shotDelay;
     }
 }

@@ -22,13 +22,12 @@ public class WeaponSwitcher : MonoBehaviour
             //Resets every weapon that is active
             if(weapon.gameObject.activeInHierarchy)
             {
-                weapon.SendMessage("OnWeaponReset");
+                weapon.SendMessage("OnWeaponReset", SendMessageOptions.DontRequireReceiver);
             }
 
             //Activates and deactivates correct weapons
             if (weaponIndex == currentWeapon)
             {
-                
                 weapon.gameObject.SetActive(true);
             }
 
