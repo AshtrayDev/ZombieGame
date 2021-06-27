@@ -79,4 +79,9 @@ public class Weapon : MonoBehaviour
         GameObject impact = Instantiate(hitEffect, hit.point, Quaternion.identity);
         Destroy(impact, 1f);
     }
+
+    public void OnWeaponReset()
+    {
+        isWeaponDelayed = false;
+    }
 }

@@ -41,8 +41,6 @@ public class EnemyAI : MonoBehaviour
     void EngageTarget()
     {
         navMeshAgent.SetDestination(target.position);
-        Debug.Log(target.position);
-        Debug.Log(navMeshAgent.remainingDistance);
         FaceTarget();
 
         if (navMeshAgent.remainingDistance == Mathf.Infinity)
@@ -83,7 +81,6 @@ public class EnemyAI : MonoBehaviour
     void OnDamageTaken()
     {
         isProvoked = true;
-        Debug.Log("Test");
     }
 
     void OnDrawGizmosSelected()

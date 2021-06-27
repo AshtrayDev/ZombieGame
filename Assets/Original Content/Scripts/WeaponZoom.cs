@@ -22,17 +22,32 @@ public class WeaponZoom : MonoBehaviour
     {
         if (Input.GetButton("Fire2"))
         {
-            playerCam.fieldOfView = zoomFOV;
-            fpsController.mouseLook.XSensitivity = zoomSens;
-            fpsController.mouseLook.YSensitivity = zoomSens;
+            Zoom();
         }
 
         else
         {
-            playerCam.fieldOfView = FOV;
-            fpsController.mouseLook.XSensitivity = sens;
-            fpsController.mouseLook.YSensitivity = sens;
+            StopZoom();
         }
+    }
+
+    private void Zoom()
+    {
+        playerCam.fieldOfView = zoomFOV;
+        fpsController.mouseLook.XSensitivity = zoomSens;
+        fpsController.mouseLook.YSensitivity = zoomSens;
+    }
+
+    private void StopZoom()
+    {
+        playerCam.fieldOfView = FOV;
+        fpsController.mouseLook.XSensitivity = sens;
+        fpsController.mouseLook.YSensitivity = sens;
+    }
+
+    public void OnWeaponReset()
+    {
+        StopZoom();
     }
 
 
