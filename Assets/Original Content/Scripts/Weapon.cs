@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] int ammoCost = 1;
     [SerializeField] float shotDelay = 0.5f;
 
+    [SerializeField] AmmoType ammoType;
+
     WeaponDelay weaponDelay;
 
     private void Start()
@@ -30,7 +32,7 @@ public class Weapon : MonoBehaviour
 
     void CanWeaponShoot()
     {
-        if(ammoSlot.GetCurrentAmmo() > 0 && weaponDelay.CanWeaponShoot(this))
+        if(ammoSlot.GetCurrentAmmo(ammoType) > 0 && weaponDelay.CanWeaponShoot(this))
         {
             Shoot();
         }
@@ -41,7 +43,7 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         MuzzleFlash();
-        ammoSlot.ReduceCurrentAmmo(ammoCost);
+        ammoSlot.ReduceCurrentAmmo(ammoCost, ammoType);
         RaycastHit hit = ProcessRaycast();
         weaponDelay.StartDelay(this);
 
