@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] int ammoCost = 1;
     [SerializeField] float shotDelay = 0.5f;
 
+
     [SerializeField] AmmoType ammoType;
 
     WeaponDelay weaponDelay;
