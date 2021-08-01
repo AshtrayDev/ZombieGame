@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIHandler : MonoBehaviour
-{ 
-    [SerializeField] GameObject reticleUI;
+{
+    public GameObject reticleUI;
 
     public void SetActiveReticleUI(bool state)
     {

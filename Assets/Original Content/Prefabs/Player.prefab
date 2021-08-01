@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2920602197937652501}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
     stickToGroundHelperDistance: 0.6
     slowDownRate: 1
     airControl: 0
-    shellOffset: 0
+    shellOffset: 0.1
 --- !u!114 &1770903509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,11 +176,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoSlots:
   - ammoType: 0
-    ammoAmount: 40
+    ammoAmount: 9999
   - ammoType: 1
-    ammoAmount: 40
+    ammoAmount: 9999
   - ammoType: 2
-    ammoAmount: 45
+    ammoAmount: 9999
 --- !u!1 &1158213362288651411
 GameObject:
   m_ObjectHideFlags: 0

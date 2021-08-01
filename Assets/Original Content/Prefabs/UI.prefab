@@ -552,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6822955714412405495
 RectTransform:
   m_ObjectHideFlags: 0
@@ -885,6 +885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6822955715272317673}
   - component: {fileID: 6822955715272317686}
+  - component: {fileID: 185868748}
   m_Layer: 5
   m_Name: Game Session
   m_TagString: Untagged
@@ -918,6 +919,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66050124a499ff4a950475536fc80d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &185868748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822955715272317672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19637aee4194807439aebad5c293f1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundNum: 4
+  maxAmountOfZombies: 24
+  nextRound: 1
 --- !u!1 &6822955715294468151
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6822955715294468148}
+  - component: {fileID: 680081902}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -952,6 +969,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &680081902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822955715294468151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59aa427c2b44fb24f9bcb985224d5407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reticleUI: {fileID: 6822955715011970857}
 --- !u!1 &6822955715328748894
 GameObject:
   m_ObjectHideFlags: 0

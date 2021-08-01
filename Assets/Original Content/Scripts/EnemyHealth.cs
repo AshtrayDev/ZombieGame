@@ -9,7 +9,12 @@ public class EnemyHealth : MonoBehaviour
 
     bool isDead = false;
 
+    ZombieSpawner zombieSpawner;
 
+    private void Awake()
+    {
+        zombieSpawner = FindObjectOfType<ZombieSpawner>();
+    }
 
     public void TakeDamage(float amount)
     {
@@ -17,6 +22,11 @@ public class EnemyHealth : MonoBehaviour
 
         BroadcastMessage("OnDamageTaken");
         CheckHealthAmount();
+    }
+
+    public void SetHealth(float health)
+    {
+        this.health = health;
     }
 
     void CheckHealthAmount()
@@ -36,6 +46,7 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         GetComponent<Animator>().SetTrigger("death");
         GetComponent<EnemyAI>().enabled = false;
+        zombieSpawner.DestroyZombie();
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
     }
