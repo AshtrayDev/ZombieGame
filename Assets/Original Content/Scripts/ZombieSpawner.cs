@@ -72,8 +72,16 @@ public class ZombieSpawner : MonoBehaviour
 
     public ZombieSpawnPoint RandomSpawnPoint()
     {
-        ZombieSpawnPoint[] spawnPoints = FindObjectsOfType<ZombieSpawnPoint>();
+        List<ZombieSpawnPoint> spawnPoints = new List<ZombieSpawnPoint>();
 
-        return spawnPoints[Random.Range(0, spawnPoints.Length - 1)];
+        foreach (ZombieSpawnPoint point in FindObjectsOfType<ZombieSpawnPoint>())
+        {
+            if (point.IsActive())
+            {
+                spawnPoints.Add(point);
+            }
+        }
+
+        return spawnPoints[Random.Range(0, spawnPoints.Count - 1)];
     }
 }
