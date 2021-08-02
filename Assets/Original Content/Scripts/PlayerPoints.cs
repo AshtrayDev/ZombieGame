@@ -36,12 +36,14 @@ public class PlayerPoints : MonoBehaviour
     {
         currentPoints = currentPoints + amount;
         uiHandler.SetPointsUIText(currentPoints);
+        uiHandler.AddPointsUI(amount, true);
     }
 
     public void RemovePoints(int amount)
     {
         currentPoints = currentPoints - amount;
         uiHandler.SetPointsUIText(currentPoints);
+        uiHandler.AddPointsUI(amount, false);
     }
 
 }
