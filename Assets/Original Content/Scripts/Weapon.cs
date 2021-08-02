@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     [SerializeField] float weaponRange = 100f;
     [SerializeField] float weaponDamage = 25f;
+    [SerializeField] float headshotMultiplier = 2;
     [SerializeField] Ammo ammoSlot;
     [SerializeField] int ammoCost = 1;
     [SerializeField] float shotDelay = 0.5f;
@@ -17,10 +18,12 @@ public class Weapon : MonoBehaviour
     [SerializeField] AmmoType ammoType;
 
     WeaponDelay weaponDelay;
+    PlayerPoints playerPoints;
 
-    private void Start()
+    private void Awake()
     {
         weaponDelay = GetComponentInParent<WeaponDelay>();
+        playerPoints = FindObjectOfType<PlayerPoints>();
     }
 
     void Update()
@@ -64,10 +67,17 @@ public class Weapon : MonoBehaviour
 
     void ProcessDamage(RaycastHit hit)
     {
-        if (hit.transform.GetComponent<EnemyHealth>())
+        if(hit.transform.gameObject.name == "HeadHitbox")
         {
-            EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(weaponDamage);
+            print(hit.transform.name);
+            EnemyHealth enemyHealth = hit.transform.GetComponentInParent<EnemyHealth>();
+            enemyHealth.TakeDamage(weaponDamage * headshotMultiplier, EnemyHealth.DamageType.headshot);
+        }
+
+        else if(hit.transform.gameObject.name == "BodyHitbox")
+        {
+            EnemyHealth enemyHealth = hit.transform.GetComponentInParent<EnemyHealth>();
+            enemyHealth.TakeDamage(weaponDamage, EnemyHealth.DamageType.body);
         }
     }
 

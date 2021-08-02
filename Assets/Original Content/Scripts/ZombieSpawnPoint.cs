@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieSpawnPoint : MonoBehaviour
 {
-    bool isActive = true;
+    [SerializeField] bool isActive = true;
 
     public bool IsActive()
     {

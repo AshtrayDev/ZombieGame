@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1770903509}
   - component: {fileID: 3794662018803389404}
   - component: {fileID: 2920602197937652501}
+  - component: {fileID: 872986884}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -181,6 +182,19 @@ MonoBehaviour:
     ammoAmount: 9999
   - ammoType: 2
     ammoAmount: 9999
+--- !u!114 &872986884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158213362288651409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c605eeb2ecf29f64f97c2603387dd9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPoints: 500
 --- !u!1 &1158213362288651411
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2093110660660371736, guid: b199bf956f4e3964e8971ae4a524192b, type: 3}
       propertyPath: weaponDamage
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2093110660660371736, guid: b199bf956f4e3964e8971ae4a524192b, type: 3}
       propertyPath: weaponRange
@@ -521,6 +535,10 @@ PrefabInstance:
     - target: {fileID: 1603477376435146278, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
       propertyPath: weaponRange
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603477376435146278, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
+      propertyPath: weaponDamage
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7937706390384244111, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -611,6 +629,10 @@ PrefabInstance:
     - target: {fileID: 3449588874797495588, guid: 4d7aee3d67b5484418b8211c9b541c89, type: 3}
       propertyPath: ammoType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449588874797495588, guid: 4d7aee3d67b5484418b8211c9b541c89, type: 3}
+      propertyPath: weaponDamage
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4566307585592121417, guid: 4d7aee3d67b5484418b8211c9b541c89, type: 3}
       propertyPath: m_LocalPosition.x

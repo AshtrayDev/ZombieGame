@@ -48,6 +48,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         roundActive = true;
         (roundNum, zombieHP, zombiesLeftToSpawn) = roundSystem.GetNewRoundStats();
+        uiHandler.SetRoundUIText(roundNum);
     }
 
     void EndRound()
