@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 742142281}
   - component: {fileID: 749360708439864674}
   m_Layer: 0
-  m_Name: EnemyWalker
+  m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,6 +140,9 @@ MonoBehaviour:
   chaseRange: 500
   attackRange: 1.5
   turnSpeed: 2
+  walkSpeed: 2
+  runSpeed: 5
+  isRunner: 0
 --- !u!114 &742142281
 MonoBehaviour:
   m_ObjectHideFlags: 0

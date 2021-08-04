@@ -154,13 +154,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &28676760 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3435085877077356892, guid: 14edac078ab8e744fa896b9102cdf429, type: 3}
+  m_PrefabInstance: {fileID: 1126693201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b0131a3a439374bae2aac188eb799c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &131222878
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15408
+  m_Name: pb_Mesh15410
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -326,9 +337,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 648685517}
     m_Modifications:
     - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
+      propertyPath: unlockedSpawnPoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
       propertyPath: pointCost
       value: 2000
       objectReference: {fileID: 0}
+    - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
+      propertyPath: unlockedSpawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 28676760}
+    - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
+      propertyPath: unlockedSpawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 763535177}
     - target: {fileID: 8568965731930886748, guid: 7374728666759394fb17f6134d958b65, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.455833
@@ -841,7 +864,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15384
+  m_Name: pb_Mesh15386
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1360,7 +1383,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750893844}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0a2f5eb76269beb4e85e1ddfc334e641, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -3422,6 +3445,17 @@ Transform:
   m_Father: {fileID: 560225922}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &763535177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3435085877077356892, guid: 14edac078ab8e744fa896b9102cdf429, type: 3}
+  m_PrefabInstance: {fileID: 505478504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b0131a3a439374bae2aac188eb799c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858898257
 GameObject:
   m_ObjectHideFlags: 0
@@ -3546,7 +3580,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880093607}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0a2f5eb76269beb4e85e1ddfc334e641, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -5564,7 +5598,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15488
+  m_Name: pb_Mesh15492
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5766,7 +5800,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933295754}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0a2f5eb76269beb4e85e1ddfc334e641, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -8140,11 +8174,60 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1158213362293501751, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362293501751, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902321, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: advancedSettings.groundCheckDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: advancedSettings.shellOffset
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: crouchSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: jumpSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: maxAirJumps
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: originalSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158213362299902323, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: sprintSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247362315893570893, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: weaponDamage
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3794662018803389404, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 6822955714790629965}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1158213362299902321, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
 --- !u!4 &1043148838 stripped
 Transform:
@@ -8157,7 +8240,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15450
+  m_Name: pb_Mesh15452
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8669,7 +8752,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15424
+  m_Name: pb_Mesh15426
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9048,7 +9131,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15330
+  m_Name: pb_Mesh15332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9690,9 +9773,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 648685517}
     m_Modifications:
     - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
+      propertyPath: unlockedSpawnPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
       propertyPath: pointCost
       value: 800
       objectReference: {fileID: 0}
+    - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
+      propertyPath: size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
+      propertyPath: unlockedSpawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 28676760}
+    - target: {fileID: -8557875503302216157, guid: 7374728666759394fb17f6134d958b65, type: 3}
+      propertyPath: unlockedSpawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 763535177}
     - target: {fileID: 8568965731930886748, guid: 7374728666759394fb17f6134d958b65, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.4558334
@@ -9821,7 +9920,7 @@ PrefabInstance:
       objectReference: {fileID: 8215596355370777401, guid: 87cdbfa9a62f47648a4107c544c978da, type: 3}
     - target: {fileID: 6822955715294468148, guid: f0e08e13baaa78546a035398c38d07bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: 6822955715294468148, guid: f0e08e13baaa78546a035398c38d07bc, type: 3}
       propertyPath: m_LocalPosition.y

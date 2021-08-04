@@ -36,10 +36,9 @@ public class WeaponZoom : MonoBehaviour
         originalPos = transform.localPosition;
         originalRotation = transform.localEulerAngles;
         currentSens = originalSens;
-        fpsController.mouseLook.XSensitivity = originalSens;
-        fpsController.mouseLook.YSensitivity = originalSens;
-        originalMovementSpeed = fpsController.movementSettings.ForwardSpeed;
-        currentMovementSpeed = originalMovementSpeed;
+        fpsController.sensitivityX = originalSens;
+        fpsController.sensitivityY = originalSens;
+        originalMovementSpeed = fpsController.originalSpeed;
 
         zoomSens = originalSens / (originalFOV / zoomFOV);
     }
@@ -80,13 +79,13 @@ public class WeaponZoom : MonoBehaviour
             //Sens
             float sensDiff = zoomSens - currentSens;
             currentSens = currentSens + (sensDiff * Time.deltaTime * zoomSpeed);
-            fpsController.mouseLook.XSensitivity = currentSens;
-            fpsController.mouseLook.YSensitivity = currentSens;
+            fpsController.sensitivityX = currentSens;
+            fpsController.sensitivityY = currentSens;
 
             //MovementSpeed
             float movementSpeedDiff = zoomMovementSpeed - currentMovementSpeed;
             currentMovementSpeed = currentMovementSpeed + (movementSpeedDiff * Time.deltaTime * zoomSpeed);
-            fpsController.movementSettings.ForwardSpeed = currentMovementSpeed;
+            fpsController.moveSpeed = currentMovementSpeed;
         }
     }
 
@@ -112,13 +111,13 @@ public class WeaponZoom : MonoBehaviour
             //Sens
             float sensDiff = originalSens - currentSens;
             currentSens = currentSens + (sensDiff * Time.deltaTime * zoomSpeed);
-            fpsController.mouseLook.XSensitivity = currentSens;
-            fpsController.mouseLook.YSensitivity = currentSens;
+            fpsController.sensitivityX = currentSens;
+            fpsController.sensitivityY = currentSens;
 
             //MovementSpeed
             float movementSpeedDiff = originalMovementSpeed - currentMovementSpeed;
             currentMovementSpeed = currentMovementSpeed + (movementSpeedDiff * Time.deltaTime * zoomSpeed);
-            fpsController.movementSettings.ForwardSpeed = currentMovementSpeed;
+            fpsController.moveSpeed = currentMovementSpeed;
         }
     }
 

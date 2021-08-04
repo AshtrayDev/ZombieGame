@@ -62,6 +62,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         GameObject enemy = Instantiate(zombiePrefab, RandomSpawnPoint().transform.position, Quaternion.identity);
         enemy.GetComponent<EnemyHealth>().SetHealth(zombieHP);
+        enemy.GetComponent<EnemyAI>().isRunner = TrySpawnRunner();
         zombiesActive++;
         zombiesLeftToSpawn--;
     }
@@ -84,5 +85,31 @@ public class ZombieSpawner : MonoBehaviour
         }
 
         return spawnPoints[Random.Range(0, spawnPoints.Count - 1)];
+    }
+
+    bool TrySpawnRunner()
+    {
+        if(roundNum > 10)
+        {
+            return true;
+        }
+
+        else if(roundNum < 5)
+        {
+            return false;
+        }
+
+        else
+        {
+            if(Random.Range(0, 11 - roundNum) == 1)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
     }
 }

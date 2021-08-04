@@ -69,7 +69,6 @@ public class Weapon : MonoBehaviour
     {
         if(hit.transform.gameObject.name == "HeadHitbox")
         {
-            print(hit.transform.name);
             EnemyHealth enemyHealth = hit.transform.GetComponentInParent<EnemyHealth>();
             enemyHealth.TakeDamage(weaponDamage * headshotMultiplier, EnemyHealth.DamageType.headshot);
         }

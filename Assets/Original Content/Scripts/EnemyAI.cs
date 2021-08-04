@@ -9,10 +9,14 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float chaseRange = 5;
     [SerializeField] float attackRange = 2;
     [SerializeField] float turnSpeed = 2;
+    [SerializeField] float walkSpeed = 2;
+    [SerializeField] float runSpeed = 5;
 
     NavMeshAgent navMeshAgent;
     bool isProvoked = false;
     float currentDistanceFromTarget = Mathf.Infinity;
+
+    public bool isRunner = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +47,8 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.SetDestination(target.position);
         FaceTarget();
 
+
+
         if (navMeshAgent.remainingDistance == Mathf.Infinity)
         {
             ChaseTarget();
@@ -63,7 +69,18 @@ public class EnemyAI : MonoBehaviour
     {
         navMeshAgent.SetDestination(target.position);
         GetComponent<Animator>().SetBool("attack", false);
-        GetComponent<Animator>().SetTrigger("move");
+
+        if (isRunner)
+        {
+            GetComponent<Animator>().SetTrigger("run");
+            navMeshAgent.speed = runSpeed;
+        }
+
+        else
+        {
+            GetComponent<Animator>().SetTrigger("walk");
+            navMeshAgent.speed = walkSpeed;
+        }
     }
 
     void FaceTarget()
@@ -76,6 +93,7 @@ public class EnemyAI : MonoBehaviour
     void AttackTarget()
     {
         GetComponent<Animator>().SetBool("attack", true);
+        navMeshAgent.speed = 0;
     }
 
     void OnDamageTaken()

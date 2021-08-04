@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float health = 100f;
@@ -63,6 +63,7 @@ public class EnemyHealth : MonoBehaviour
 
         isDead = true;
         GetComponent<Animator>().SetTrigger("death");
+        GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<EnemyAI>().enabled = false;
         zombieSpawner.DestroyZombie();
         yield return new WaitForSeconds(destroyDelay);
