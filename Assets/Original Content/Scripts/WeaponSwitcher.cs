@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
 {
-    [SerializeField] int currentWeapon = 0;
+    [SerializeField] int currentWeaponID = 0;
+
+    Weapon currentWeapon;
 
     void Start()
     {
@@ -19,6 +21,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         foreach(Transform weapon in transform)
         {
+
             //Resets every weapon that is active
             if(weapon.gameObject.activeInHierarchy)
             {
@@ -26,14 +29,14 @@ public class WeaponSwitcher : MonoBehaviour
             }
 
             //Activates and deactivates correct weapons
-            if (weaponIndex == currentWeapon)
+            if (weaponIndex == currentWeaponID)
             {
                 weapon.gameObject.SetActive(true);
+                currentWeapon = weapon.GetComponent<Weapon>();
             }
 
             else
             {
-
                 weapon.gameObject.SetActive(false);
             }
 
@@ -44,17 +47,31 @@ public class WeaponSwitcher : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetAxis("SwitchWeapon") < 0 && currentWeapon < CountWeaponAmount()-1)
+        if (Input.GetAxis("SwitchWeapon") < 0 && currentWeaponID < CountWeaponAmount()-1)
         {
-            currentWeapon++;
-            SetWeaponActive();
+            currentWeaponID++;
+            HolsterWeapon(currentWeapon);
         }
 
-        if (Input.GetAxis("SwitchWeapon") > 0 && currentWeapon > 0)
+        if (Input.GetAxis("SwitchWeapon") > 0 && currentWeaponID > 0)
         {
-            currentWeapon--;
-            SetWeaponActive();
+            currentWeaponID--;
+            HolsterWeapon(currentWeapon);
         }
+    }
+    
+    void HolsterWeapon(Weapon weapon)
+    {
+        if (weapon.gameObject.activeInHierarchy == true)
+        {
+            weapon.GetComponent<Animator>().SetTrigger("Holster");
+        }
+
+    }
+
+    public void SwitchWeapon()
+    {
+        SetWeaponActive();
     }
 
     int CountWeaponAmount()

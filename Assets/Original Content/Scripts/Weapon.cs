@@ -5,48 +5,73 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Camera playerCam;
+    [SerializeField] Ammo ammoSlot;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
     [SerializeField] float weaponRange = 100f;
     [SerializeField] float weaponDamage = 25f;
     [SerializeField] float headshotMultiplier = 2;
-    [SerializeField] Ammo ammoSlot;
+    [SerializeField] bool isAutomatic = false;
     [SerializeField] int ammoCost = 1;
     [SerializeField] float shotDelay = 0.5f;
-
-
     [SerializeField] AmmoType ammoType;
 
     WeaponDelay weaponDelay;
     PlayerPoints playerPoints;
+    Animator animator;
+
+    bool isReloading;
 
     private void Awake()
     {
         weaponDelay = GetComponentInParent<WeaponDelay>();
         playerPoints = FindObjectOfType<PlayerPoints>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (isAutomatic)
         {
-            CanWeaponShoot();
+            if (Input.GetButton("Fire1"))
+            {
+                CanWeaponShoot();
+            }
+        }
+
+        else
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                CanWeaponShoot();
+            }
+        }
+
+
+        if (Input.GetButtonDown("Reload") && !isReloading)
+        {
+            Reload();
         }
     }
 
     void CanWeaponShoot()
     {
-        if(ammoSlot.GetCurrentAmmo(ammoType) > 0 && weaponDelay.CanWeaponShoot(this))
+        if(ammoSlot.GetCurrentAmmo(ammoType) > 0 && weaponDelay.CanWeaponShoot(this) && !isReloading)
         {
             Shoot();
         }
     }
 
-
+    void Reload()
+    {
+        animator.SetTrigger("Reload");
+        isReloading = true;
+    }
 
     void Shoot()
     {
         MuzzleFlash();
+        animator.SetTrigger("Fire");
         ammoSlot.ReduceCurrentAmmo(ammoCost, ammoType);
         RaycastHit hit = ProcessRaycast();
         weaponDelay.StartDelay(this);
@@ -94,5 +119,20 @@ public class Weapon : MonoBehaviour
     public float GetShotDelay()
     {
         return shotDelay;
+    }
+
+    public bool IsReloading()
+    {
+        return isReloading;
+    }
+
+    public void FinishHolsterAnim()
+    {
+        SendMessageUpwards("SwitchWeapon");
+    }
+
+    public void FinishReloadAnim()
+    {
+        isReloading = false;
     }
 }

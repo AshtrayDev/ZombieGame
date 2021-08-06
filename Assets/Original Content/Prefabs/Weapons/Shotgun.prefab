@@ -211,10 +211,13 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   muzzleFlash: {fileID: 6468565009965016290}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
-  weaponRange: 10
-  weaponDamage: 100
+  weaponRange: 7
+  weaponDamage: 500
+  headshotMultiplier: 2
   ammoSlot: {fileID: 0}
   ammoCost: 2
+  shotDelay: 2
+  ammoType: 2
 --- !u!1001 &94290447989415461
 PrefabInstance:
   m_ObjectHideFlags: 0
