@@ -84,7 +84,7 @@ public class ZombieSpawner : MonoBehaviour
             }
         }
 
-        return spawnPoints[Random.Range(0, spawnPoints.Count - 1)];
+        return spawnPoints[Random.Range(0, spawnPoints.Count)];
     }
 
     bool TrySpawnRunner()

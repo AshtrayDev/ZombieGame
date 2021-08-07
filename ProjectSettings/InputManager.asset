@@ -151,7 +151,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Reload
-    descriptiveName: Reloadd
+    descriptiveName: Reload
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: r
