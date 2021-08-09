@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] int maxAmmoInClip = 30;
     [SerializeField] int maxAmmo = 300;
 
+
     int ammoInClip;
     int storedAmmo;
 
@@ -24,6 +25,7 @@ public class Weapon : MonoBehaviour
     WeaponSwitcher switcher;
     Camera playerCam;
     UIHandler ui;
+    Crosshair crosshair;
 
     bool isReloading;
 
@@ -35,6 +37,7 @@ public class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
         switcher = GetComponentInParent<WeaponSwitcher>();
         ui = FindObjectOfType<UIHandler>();
+        crosshair = FindObjectOfType<Crosshair>();
     }
 
     private void Start()
@@ -49,6 +52,7 @@ public class Weapon : MonoBehaviour
     {
         RefreshAmmoUI();
     }
+
 
     void Update()
     {
@@ -110,8 +114,7 @@ public class Weapon : MonoBehaviour
     RaycastHit ProcessRaycast()
     {
         RaycastHit hit;
-        Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, weaponRange);
-
+        Physics.Raycast(playerCam.transform.position, playerCam.transform.forward + crosshair.GetRandomAngle(), out hit, weaponRange);
         return hit;
     }
 

@@ -27,6 +27,7 @@ public class WeaponZoom : MonoBehaviour
     Weapon weapon;
     RigidbodyFirstPersonController fpsController;
     Camera playerCam;
+    Crosshair crosshair;
 
 
     private void Awake()
@@ -36,6 +37,7 @@ public class WeaponZoom : MonoBehaviour
         weapon = GetComponent<Weapon>();
         playerCam = transform.transform.GetComponentInParent<Camera>();
         fpsController = transform.transform.transform.GetComponentInParent<RigidbodyFirstPersonController>();
+        crosshair = FindObjectOfType<Crosshair>();
     }
 
     void Start()
@@ -56,6 +58,7 @@ public class WeaponZoom : MonoBehaviour
         {
             Zoom();
             uiHandler.SetActiveReticleUI(false);
+            crosshair.ADS();
             animator.SetBool("ADS", true);
         }
 
@@ -63,7 +66,14 @@ public class WeaponZoom : MonoBehaviour
         {
             StopZoom();
             uiHandler.SetActiveReticleUI(true);
+            crosshair.ReleaseADS();
             animator.SetBool("ADS", false);
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            //MovementSpeed
+            fpsController.currentMoveSpeed = originalMovementSpeed;
         }
     }
 
@@ -94,9 +104,7 @@ public class WeaponZoom : MonoBehaviour
             fpsController.sensitivityY = currentSens;
 
             //MovementSpeed
-            float movementSpeedDiff = zoomMovementSpeed - currentMovementSpeed;
-            currentMovementSpeed = currentMovementSpeed + (movementSpeedDiff * Time.deltaTime * zoomSpeed);
-            fpsController.moveSpeed = currentMovementSpeed;
+            fpsController.currentMoveSpeed = zoomMovementSpeed;
         }
     }
 
@@ -125,16 +133,14 @@ public class WeaponZoom : MonoBehaviour
             fpsController.sensitivityX = currentSens;
             fpsController.sensitivityY = currentSens;
 
-            //MovementSpeed
-            float movementSpeedDiff = originalMovementSpeed - currentMovementSpeed;
-            currentMovementSpeed = currentMovementSpeed + (movementSpeedDiff * Time.deltaTime * zoomSpeed);
-            fpsController.moveSpeed = currentMovementSpeed;
+
         }
     }
 
     public void OnWeaponReset()
     {
-        StopZoom();
+        fpsController.currentMoveSpeed = originalMovementSpeed;
+        playerCam.fieldOfView = originalFOV;
     }
 
 

@@ -307,7 +307,7 @@ PrefabInstance:
     - target: {fileID: 1603477376435146278, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
       propertyPath: ammoSlot
       value: 
-      objectReference: {fileID: 2920602197937652501, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1603477376435146278, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
       propertyPath: maxAmmoInClip
       value: 8

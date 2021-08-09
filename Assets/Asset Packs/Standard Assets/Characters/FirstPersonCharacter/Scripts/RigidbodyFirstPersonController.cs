@@ -96,7 +96,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		[Header("Movement")]
 		[Tooltip("The desired magnitude of the velocity vector. It's not perfect so it won't get to that amount most of the time.")]
-		[HideInInspector]public float moveSpeed;
+		public float currentMoveSpeed;
 		public float sprintSpeed = 8f;
 		public float originalSpeed = 4f;
 		[Tooltip("The vertical speed of the jump. The script won't add force normally, it'll instead set velocity in the Y axis to that amount.")]
@@ -169,7 +169,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			if (rb)
 				rb.freezeRotation = true;
 			originalRotation = transform.localRotation;
-			moveSpeed = originalSpeed;
+			currentMoveSpeed = originalSpeed;
 
 		}
 
@@ -197,16 +197,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			}
 
-			if (Input.GetButtonDown("Dash"))
+			if (Input.GetButton("Dash"))
 			{
 				dash = true;
-				moveSpeed = sprintSpeed;
+				currentMoveSpeed = sprintSpeed;
 			}
 
 			if (Input.GetButtonUp("Dash"))
 			{
 				dash = false;
-				moveSpeed = originalSpeed;
+				currentMoveSpeed = originalSpeed;
 			}
 
 
@@ -341,9 +341,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			// If crouching and on the ground, movement speed is cut in half.
 			if (crouch && isGrounded)
-				actualMoveSpeed = moveSpeed / 2;
+				actualMoveSpeed = currentMoveSpeed / 2;
 			else
-				actualMoveSpeed = moveSpeed;
+				actualMoveSpeed = currentMoveSpeed;
 
 			// Saves your PC from a few calculations when the player isn't doing anything.
 			if (movementDirection.magnitude != 0f)
@@ -453,7 +453,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			}
 			return Mathf.Clamp(angle, min, max);
 		}
-
-
+		public float GetActualMoveSpeed()
+		{
+			return rb.velocity.magnitude;
+		}
 	}
 }

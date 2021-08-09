@@ -211,8 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e375444ff27f499eaa6052769ab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
-  ammoSlot: {fileID: 0}
   muzzleFlash: {fileID: 5387121780991627301}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
   weaponRange: 100
@@ -221,7 +219,8 @@ MonoBehaviour:
   isAutomatic: 1
   ammoCost: 1
   shotDelay: 0.1
-  ammoType: 1
+  maxAmmoInClip: 30
+  maxAmmo: 300
 --- !u!114 &6628369925857566164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,8 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aedd88fc4bf3b84db4d0fa169fc7700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsController: {fileID: 0}
-  playerCam: {fileID: 0}
   originalFOV: 90
   zoomFOV: 45
   originalSens: 2
