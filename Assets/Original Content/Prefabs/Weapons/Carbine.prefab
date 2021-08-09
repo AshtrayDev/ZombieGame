@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 4566307585590221481}
   - component: {fileID: 3449588874797495588}
   - component: {fileID: 6863407883131879550}
+  - component: {fileID: 5300444194585021138}
   m_Layer: 0
   m_Name: Carbine
   m_TagString: Untagged
@@ -383,10 +384,10 @@ MonoBehaviour:
   weaponRange: 1000
   weaponDamage: 25
   headshotMultiplier: 2
-  isAutomatic: 0
+  isAutomatic: 1
   ammoCost: 1
-  shotDelay: 0.5
-  ammoType: 0
+  shotDelay: 0.1
+  ammoType: 1
 --- !u!114 &6863407883131879550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,12 +403,31 @@ MonoBehaviour:
   fpsController: {fileID: 0}
   playerCam: {fileID: 0}
   originalFOV: 90
-  zoomFOV: 45
+  zoomFOV: 75
   originalSens: 2
-  zoomSpeed: 1
+  zoomSpeed: 4
   zoomMovementSpeed: 2
   zoomPos: {x: 0, y: 0, z: 0}
   zoomRotation: {x: 0, y: 0, z: 0}
+--- !u!95 &5300444194585021138
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566307585592149097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bec03b727ed07e2418393425bd4f0c20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4566307585592149099
 GameObject:
   m_ObjectHideFlags: 0

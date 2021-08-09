@@ -613,13 +613,14 @@ GameObject:
   - component: {fileID: 7937706390384244111}
   - component: {fileID: 1603477376435146278}
   - component: {fileID: 4143973407315910518}
+  - component: {fileID: 1827872376}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7937706390384244111
 Transform:
   m_ObjectHideFlags: 0
@@ -651,14 +652,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 0}
+  ammoSlot: {fileID: 0}
   muzzleFlash: {fileID: 1162831578450331474}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
-  weaponRange: 100
-  weaponDamage: 12
+  weaponRange: 20
+  weaponDamage: 25
   headshotMultiplier: 2
-  ammoSlot: {fileID: 0}
+  isAutomatic: 0
   ammoCost: 1
-  shotDelay: 0.5
+  shotDelay: 0.1
   ammoType: 0
 --- !u!114 &4143973407315910518
 MonoBehaviour:
@@ -675,12 +677,31 @@ MonoBehaviour:
   fpsController: {fileID: 0}
   playerCam: {fileID: 0}
   originalFOV: 90
-  zoomFOV: 45
+  zoomFOV: 90
   originalSens: 2
-  zoomSpeed: 1
+  zoomSpeed: 4
   zoomMovementSpeed: 2
   zoomPos: {x: 0, y: 0, z: 0}
   zoomRotation: {x: 0, y: 0, z: 0}
+--- !u!95 &1827872376
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7944122969259152377}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a682d9e8ea205e429a618d89cf0b8eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8262764304081216905
 GameObject:
   m_ObjectHideFlags: 0

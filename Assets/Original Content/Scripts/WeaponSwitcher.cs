@@ -6,6 +6,7 @@ public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int currentWeaponID = 0;
 
+    List<Weapon> weapons = new List<Weapon>();
     Weapon currentWeapon;
 
     void Start()
@@ -13,13 +14,13 @@ public class WeaponSwitcher : MonoBehaviour
         SetWeaponActive();
     }
 
-    void SetWeaponActive()
+    public void SetWeaponActive()
     {
 
         int weaponIndex = 0;
         
 
-        foreach(Transform weapon in transform)
+        foreach(Weapon weapon in weapons)
         {
 
             //Resets every weapon that is active
@@ -47,7 +48,7 @@ public class WeaponSwitcher : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetAxis("SwitchWeapon") < 0 && currentWeaponID < CountWeaponAmount()-1)
+        if (Input.GetAxis("SwitchWeapon") < 0 && currentWeaponID < GetAmountOfWeapons()-1)
         {
             currentWeaponID++;
             HolsterWeapon(currentWeapon);
@@ -69,13 +70,25 @@ public class WeaponSwitcher : MonoBehaviour
 
     }
 
-    public void SwitchWeapon()
+    public void AddWeapon(Weapon weapon)
     {
+        weapons.Add(weapon);
+        currentWeaponID = weapons.IndexOf(weapon);
         SetWeaponActive();
     }
 
-    int CountWeaponAmount()
+    public void RemoveWeapon(Weapon weapon)
+    {
+        weapons.Remove(weapon);
+    }
+
+    public int GetAmountOfWeapons()
     {
         return transform.childCount;
+    }
+
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
     }
 }

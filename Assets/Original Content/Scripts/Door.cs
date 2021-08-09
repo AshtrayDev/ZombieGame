@@ -40,7 +40,7 @@ public class Door : MonoBehaviour
     {
         isTriggered = true;
         player = other.gameObject;
-        uiHandler.SetTooltipDoor("Press & Hold F to Open Door", pointCost);
+        uiHandler.SetTooltipBuy("Press & Hold F to Open Door", pointCost);
     }
 
     private void OnTriggerExit(Collider other)

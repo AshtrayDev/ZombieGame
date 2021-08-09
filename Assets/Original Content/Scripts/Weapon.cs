@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] Camera playerCam;
-    [SerializeField] Ammo ammoSlot;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
     [SerializeField] float weaponRange = 100f;
@@ -14,19 +12,32 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool isAutomatic = false;
     [SerializeField] int ammoCost = 1;
     [SerializeField] float shotDelay = 0.5f;
+    [SerializeField] int ammoInClip = 30;
+    [SerializeField] int maxAmmo;
     [SerializeField] AmmoType ammoType;
 
     WeaponDelay weaponDelay;
     PlayerPoints playerPoints;
     Animator animator;
+    WeaponSwitcher switcher;
+    Camera playerCam;
+    Ammo ammoSlot;
 
     bool isReloading;
 
     private void Awake()
     {
+        playerCam = transform.transform.GetComponentInParent<Camera>();
+        ammoSlot = transform.transform.transform.GetComponentInParent<Ammo>();
         weaponDelay = GetComponentInParent<WeaponDelay>();
         playerPoints = FindObjectOfType<PlayerPoints>();
         animator = GetComponent<Animator>();
+        switcher = GetComponentInParent<WeaponSwitcher>();
+    }
+
+    private void Start()
+    {
+        weaponDelay.AddWeapon(this);
     }
 
     void Update()
@@ -116,6 +127,12 @@ public class Weapon : MonoBehaviour
         Destroy(impact, 1f);
     }
 
+    public void DeleteWeapon()
+    {
+        weaponDelay.RemoveWeapon(this);
+        Destroy(gameObject);
+    }
+
     public float GetShotDelay()
     {
         return shotDelay;
@@ -128,7 +145,7 @@ public class Weapon : MonoBehaviour
 
     public void FinishHolsterAnim()
     {
-        SendMessageUpwards("SwitchWeapon");
+        switcher.SetWeaponActive();
     }
 
     public void FinishReloadAnim()

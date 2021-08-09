@@ -24,7 +24,7 @@ public class UIHandler : MonoBehaviour
         tooltipUI.SetActive(state);
     }
 
-    public void SetTooltipDoor(string text, int cost)
+    public void SetTooltipBuy(string text, int cost)
     {
         tooltipUI.SetActive(true);
         tooltipUI.GetComponentInChildren<TMP_Text>().text = text + "[Cost: " + cost + "]";

@@ -7,18 +7,11 @@ public class WeaponDelay : MonoBehaviour
     List<Weapon> weapons = new List<Weapon>();
     List<bool> weaponDelays = new List<bool>();
 
-    private void Start()
-    {
-        RefreshLists();
-    }
+    WeaponSwitcher switcher;   
 
-    private void RefreshLists()
+    private void Awake()
     {
-        foreach(Transform weapon in transform)
-        {
-            weapons.Add(weapon.GetComponent<Weapon>());
-            weaponDelays.Add(false);
-        }
+        switcher = GetComponent<WeaponSwitcher>();
     }
 
     IEnumerator DelayWeapon(int weaponIndex, float shotDelay)
@@ -48,5 +41,19 @@ public class WeaponDelay : MonoBehaviour
     {
         int weaponIndex = weapons.IndexOf(weapon);
         StartCoroutine(DelayWeapon(weaponIndex, weapon.GetShotDelay()));
+    }
+
+    public void AddWeapon(Weapon weapon)
+    {
+        weapons.Add(weapon);
+        weaponDelays.Add(false);
+        switcher.AddWeapon(weapon);
+    }
+
+    public void RemoveWeapon(Weapon weapon)
+    {
+        weaponDelays.RemoveAt(weapons.IndexOf(weapon));
+        weapons.Remove(weapon);
+        switcher.RemoveWeapon(weapon);
     }
 }
