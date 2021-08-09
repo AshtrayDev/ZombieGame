@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
+public class Pickup : MonoBehaviour
 {
-    [SerializeField] AmmoType ammoType;
-    [SerializeField] int ammoAmount = 1;
     [SerializeField] float rotateSpeed = 70f;
     [SerializeField] float hoverSpeed = 0.1f;
     [SerializeField] float hoverAmount = 0.1f;
@@ -63,7 +61,6 @@ public class AmmoPickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Ammo>().AddCurrentAmmo(ammoAmount, ammoType);
         Destroy(gameObject);
     }
 }

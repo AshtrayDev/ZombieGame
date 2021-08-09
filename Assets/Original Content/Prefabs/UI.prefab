@@ -1939,6 +1939,7 @@ MonoBehaviour:
   pointsUI: {fileID: 1080448346}
   addedPointsUI: {fileID: 2189264063932509120}
   roundUI: {fileID: 869849205172074314}
+  ammoUI: {fileID: 4524064468466150804}
   addPointsTextPrefab: {fileID: 8215596355370777401, guid: 87cdbfa9a62f47648a4107c544c978da, type: 3}
   lostPointsTextPrefab: {fileID: 8215596355370777401, guid: d6d4583dd4a0c6649883a1c7cbdf184f, type: 3}
 --- !u!1 &6822955715328748894

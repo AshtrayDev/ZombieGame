@@ -12,32 +12,42 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool isAutomatic = false;
     [SerializeField] int ammoCost = 1;
     [SerializeField] float shotDelay = 0.5f;
-    [SerializeField] int ammoInClip = 30;
-    [SerializeField] int maxAmmo;
-    [SerializeField] AmmoType ammoType;
+    [SerializeField] int maxAmmoInClip = 30;
+    [SerializeField] int maxAmmo = 300;
+
+    int ammoInClip;
+    int storedAmmo;
 
     WeaponDelay weaponDelay;
     PlayerPoints playerPoints;
     Animator animator;
     WeaponSwitcher switcher;
     Camera playerCam;
-    Ammo ammoSlot;
+    UIHandler ui;
 
     bool isReloading;
 
     private void Awake()
     {
         playerCam = transform.transform.GetComponentInParent<Camera>();
-        ammoSlot = transform.transform.transform.GetComponentInParent<Ammo>();
         weaponDelay = GetComponentInParent<WeaponDelay>();
         playerPoints = FindObjectOfType<PlayerPoints>();
         animator = GetComponent<Animator>();
         switcher = GetComponentInParent<WeaponSwitcher>();
+        ui = FindObjectOfType<UIHandler>();
     }
 
     private void Start()
     {
         weaponDelay.AddWeapon(this);
+        ammoInClip = maxAmmoInClip;
+        storedAmmo = maxAmmo;
+        RefreshAmmoUI();
+    }
+
+    private void OnEnable()
+    {
+        RefreshAmmoUI();
     }
 
     void Update()
@@ -67,7 +77,7 @@ public class Weapon : MonoBehaviour
 
     void CanWeaponShoot()
     {
-        if(ammoSlot.GetCurrentAmmo(ammoType) > 0 && weaponDelay.CanWeaponShoot(this) && !isReloading)
+        if(ammoInClip > 0 && weaponDelay.CanWeaponShoot(this) && !isReloading)
         {
             Shoot();
         }
@@ -75,15 +85,19 @@ public class Weapon : MonoBehaviour
 
     void Reload()
     {
-        animator.SetTrigger("Reload");
-        isReloading = true;
+        if(ammoInClip < maxAmmoInClip && storedAmmo > 0)
+        {
+            animator.SetTrigger("Reload");
+            isReloading = true;
+        }
     }
 
     void Shoot()
     {
         MuzzleFlash();
         animator.SetTrigger("Fire");
-        ammoSlot.ReduceCurrentAmmo(ammoCost, ammoType);
+        ammoInClip = ammoInClip - ammoCost;
+        RefreshAmmoUI();
         RaycastHit hit = ProcessRaycast();
         weaponDelay.StartDelay(this);
 
@@ -126,6 +140,11 @@ public class Weapon : MonoBehaviour
         GameObject impact = Instantiate(hitEffect, hit.point, Quaternion.identity);
         Destroy(impact, 1f);
     }
+    
+    public void RefreshAmmoUI()
+    {
+        ui.SetAmmoText(ammoInClip, storedAmmo);
+    }
 
     public void DeleteWeapon()
     {
@@ -150,6 +169,19 @@ public class Weapon : MonoBehaviour
 
     public void FinishReloadAnim()
     {
+        if(maxAmmoInClip > storedAmmo)
+        {
+            ammoInClip = ammoInClip + storedAmmo;
+            storedAmmo = 0;
+        }
+        else
+        {
+            int ammoToLoad = maxAmmoInClip - ammoInClip;
+            storedAmmo = storedAmmo - ammoToLoad;
+            ammoInClip = maxAmmoInClip;
+        }
+
+        RefreshAmmoUI();
         isReloading = false;
     }
 }

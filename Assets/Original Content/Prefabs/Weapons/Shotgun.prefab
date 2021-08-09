@@ -208,15 +208,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e375444ff27f499eaa6052769ab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
   muzzleFlash: {fileID: 6468565009965016290}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
   weaponRange: 7
   weaponDamage: 500
   headshotMultiplier: 2
-  ammoSlot: {fileID: 0}
+  isAutomatic: 0
   ammoCost: 2
   shotDelay: 2
+  ammoInClip: 30
+  maxAmmo: 0
   ammoType: 2
 --- !u!1001 &94290447989415461
 PrefabInstance:
