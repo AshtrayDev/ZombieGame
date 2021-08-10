@@ -43,7 +43,6 @@ public class Crosshair : MonoBehaviour
 
     private void CalculateSpread()
     {
-        print(fpsController.GetActualMoveSpeed());
         if (!isADS && fpsController.GetActualMoveSpeed() == 1)
         {
             if (spread < 100)

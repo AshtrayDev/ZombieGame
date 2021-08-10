@@ -36,6 +36,11 @@ public class EnemyHealth : MonoBehaviour
             {
                 playerPoints.AddPoints(100);
             }
+
+            if (damageType == DamageType.melee)
+            {
+                playerPoints.AddPoints(130);
+            }
         }
     }
 
