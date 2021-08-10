@@ -84,7 +84,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     public int GetAmountOfWeapons()
     {
-        return transform.childCount;
+        return weapons.Count;
     }
 
     public Weapon GetCurrentWeapon()

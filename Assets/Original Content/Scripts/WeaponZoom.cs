@@ -38,6 +38,7 @@ public class WeaponZoom : MonoBehaviour
         playerCam = transform.transform.GetComponentInParent<Camera>();
         fpsController = transform.transform.transform.GetComponentInParent<RigidbodyFirstPersonController>();
         crosshair = FindObjectOfType<Crosshair>();
+        originalMovementSpeed = fpsController.currentMoveSpeed;
     }
 
     void Start()

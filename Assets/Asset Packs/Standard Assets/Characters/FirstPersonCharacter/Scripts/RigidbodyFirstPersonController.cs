@@ -455,7 +455,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		}
 		public float GetActualMoveSpeed()
 		{
-			return rb.velocity.magnitude;
+            if (dash)
+            {
+				return movementDirection.magnitude * 2;
+			}
+			return movementDirection.magnitude;
 		}
 	}
 }

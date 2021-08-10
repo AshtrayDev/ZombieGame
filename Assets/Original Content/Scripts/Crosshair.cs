@@ -13,10 +13,13 @@ public class Crosshair : MonoBehaviour
 
     [SerializeField][Range(0, 3)] float size;
     [SerializeField] Color color;
-    [SerializeField][Range(0, 400)] public float offset;
-    [SerializeField] [Range(0, 100)] float offsetMultiplier = 50;
+    public float spread;
+    [SerializeField] [Range(0, 100)] public float offset;
+    [SerializeField] [Range(0, 100)] float spreadMultiplier = 50;
     [SerializeField][Range(0.01f, 0.05f)] float length;
     [SerializeField] [Range(0.001f, 0.01f)] float thickness;
+    [SerializeField] float crosshairChangeSpeed = 10f;
+    [SerializeField] float velocityThreshold = 0.5f;
     [SerializeField] GameObject testBullet;
 
     RigidbodyFirstPersonController fpsController;
@@ -34,19 +37,65 @@ public class Crosshair : MonoBehaviour
 
     private void Update()
     {
-        if (!isADS)
+        CalculateSpread();
+        UpdateCrosshair();
+    }
+
+    private void CalculateSpread()
+    {
+        print(fpsController.GetActualMoveSpeed());
+        if (!isADS && fpsController.GetActualMoveSpeed() == 1)
         {
-            offset = fpsController.GetActualMoveSpeed() * offsetMultiplier;
+            if (spread < 100)
+            {
+                spread = spread + crosshairChangeSpeed * Time.deltaTime;
+            }
+
             UpdateCrosshair();
+        }
+
+        if (!isADS && fpsController.GetActualMoveSpeed() == 1)
+        {
+            if (spread > 100)
+            {
+                spread = spread - crosshairChangeSpeed * Time.deltaTime;
+            }
+        }
+
+        if (!isADS && fpsController.GetActualMoveSpeed() == 2)
+        {
+            if (spread < 200)
+            {
+                spread = spread + crosshairChangeSpeed*2 * Time.deltaTime;
+            }
+
+            UpdateCrosshair();
+        }
+
+        if (!isADS && fpsController.GetActualMoveSpeed() == 0)
+        {
+            if (spread > 0)
+            {
+                spread = spread - crosshairChangeSpeed * Time.deltaTime;
+            }
         }
     }
 
     private void OnValidate()
     {
+        UpdateCrosshairSettings();
         UpdateCrosshair();
     }
 
     void UpdateCrosshair()
+    {
+        top.GetComponent<RectTransform>().localPosition = new Vector3(0, spread + offset, 0);
+        bottom.GetComponent<RectTransform>().localPosition = new Vector3(0, -spread + -offset, 0);
+        left.GetComponent<RectTransform>().localPosition = new Vector3(-spread + -offset, 0, 0);
+        right.GetComponent<RectTransform>().localPosition = new Vector3(spread + offset, 0, 0);
+    }
+
+    void UpdateCrosshairSettings()
     {
         foreach (Transform transform in transform)
         {
@@ -60,17 +109,18 @@ public class Crosshair : MonoBehaviour
         right.GetComponent<RectTransform>().localPosition = new Vector3(offset, 0, 0);
     }
 
+
     public Vector3 GetRandomAngle()
     {
         Vector3 angle = new Vector3();
-        angle = new Vector3(Random.Range(offset / 1000, -offset / 1000), Random.Range(offset / 1000, -offset / 1000), 0);
+        angle = new Vector3(Random.Range(spread / 1000, -spread / 1000), Random.Range(spread / 1000, -spread / 1000), 0);
         return angle;
     }
 
     public void ADS()
     {
         isADS = true;
-        offset = 0;
+        spread = 0 + offset;
     }
 
     public void ReleaseADS()
