@@ -32,6 +32,12 @@ public class UIHandler : MonoBehaviour
         tooltipUI.GetComponentInChildren<TMP_Text>().text = text + "[Cost: " + cost + "]";
     }
 
+    public void SetToolTipRepairBarrier()
+    {
+        tooltipUI.SetActive(true);
+        tooltipUI.GetComponentInChildren<TMP_Text>().text = "Hold F to Repair Barrier";
+    }
+
     //Points---------------------------------------------------------------------------
     public void SetPointsUIText(int points)
     {

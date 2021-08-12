@@ -25,7 +25,6 @@ public class Melee : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Hit");
 
         if (other.GetComponentInParent<EnemyHealth>() != null)
         {
