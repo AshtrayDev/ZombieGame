@@ -99,6 +99,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public float currentMoveSpeed;
 		public float sprintSpeed = 8f;
 		public float originalSpeed = 4f;
+		public float sprintAmount = 100f;
+		public float sprintConsumption = 1f;
 		[Tooltip("The vertical speed of the jump. The script won't add force normally, it'll instead set velocity in the Y axis to that amount.")]
 		public float jumpSpeed = 5.4f;
 		[Tooltip("How fast the character accelerates when moving on the ground.")]
@@ -174,130 +176,148 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		}
 
 		void Update()
-		{
+        {
 
-			// Stolen code, sets jump to true if the jump key was pressed.
-			jump = jump || Input.GetButtonDown("Jump");
+            // Stolen code, sets jump to true if the jump key was pressed.
+            jump = jump || Input.GetButtonDown("Jump");
 
-			// Set movementDirection based on input and the Rigidbody transform.
-			movementDirection = (rb.transform.right * Input.GetAxisRaw("Horizontal") + rb.transform.forward * Input.GetAxisRaw("Vertical")).normalized;
+            // Set movementDirection based on input and the Rigidbody transform.
+            movementDirection = (rb.transform.right * Input.GetAxisRaw("Horizontal") + rb.transform.forward * Input.GetAxisRaw("Vertical")).normalized;
 
-			// Crouching stuff, it doesn't detect if there's enough space to stand up right now.
-			if (Input.GetButtonDown("Crouch"))
-			{
-				crouch = true;
-				heightScale = .5f;
+            // Crouching stuff, it doesn't detect if there's enough space to stand up right now.
+            if (Input.GetButtonDown("Crouch"))
+            {
+                crouch = true;
+                heightScale = .5f;
 
-			}
+            }
 
-			if (Input.GetButtonUp("Crouch"))
-			{
-				crouch = false;
-				heightScale = 1f;
+            if (Input.GetButtonUp("Crouch"))
+            {
+                crouch = false;
+                heightScale = 1f;
 
-			}
+            }
 
-			if (Input.GetButton("Dash"))
-			{
-				dash = true;
-				currentMoveSpeed = sprintSpeed;
-			}
+            Sprint();
 
-			if (Input.GetButtonUp("Dash"))
-			{
-				dash = false;
-				currentMoveSpeed = originalSpeed;
-			}
+            if (axes == RotationAxes.MouseXAndY)
+            {
+                //Resets the average rotation
+                rotAverageY = 0f;
+                rotAverageX = 0f;
 
+                //Gets rotational input from the mouse
+                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                rotationX += Input.GetAxis("Mouse X") * sensitivityX;
 
-			if (axes == RotationAxes.MouseXAndY)
-			{
-				//Resets the average rotation
-				rotAverageY = 0f;
-				rotAverageX = 0f;
+                //Adds the rotation values to their relative array
+                rotArrayY.Add(rotationY);
+                rotArrayX.Add(rotationX);
 
-				//Gets rotational input from the mouse
-				rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-				rotationX += Input.GetAxis("Mouse X") * sensitivityX;
+                //If the arrays length is bigger or equal to the value of frameCounter remove the first value in the array
+                if (rotArrayY.Count >= frameCounter)
+                {
+                    rotArrayY.RemoveAt(0);
+                }
+                if (rotArrayX.Count >= frameCounter)
+                {
+                    rotArrayX.RemoveAt(0);
+                }
 
-				//Adds the rotation values to their relative array
-				rotArrayY.Add(rotationY);
-				rotArrayX.Add(rotationX);
+                //Adding up all the rotational input values from each array
+                for (int j = 0; j < rotArrayY.Count; j++)
+                {
+                    rotAverageY += rotArrayY[j];
+                }
+                for (int i = 0; i < rotArrayX.Count; i++)
+                {
+                    rotAverageX += rotArrayX[i];
+                }
 
-				//If the arrays length is bigger or equal to the value of frameCounter remove the first value in the array
-				if (rotArrayY.Count >= frameCounter)
-				{
-					rotArrayY.RemoveAt(0);
-				}
-				if (rotArrayX.Count >= frameCounter)
-				{
-					rotArrayX.RemoveAt(0);
-				}
+                //Standard maths to find the average
+                rotAverageY /= rotArrayY.Count;
+                rotAverageX /= rotArrayX.Count;
 
-				//Adding up all the rotational input values from each array
-				for (int j = 0; j < rotArrayY.Count; j++)
-				{
-					rotAverageY += rotArrayY[j];
-				}
-				for (int i = 0; i < rotArrayX.Count; i++)
-				{
-					rotAverageX += rotArrayX[i];
-				}
+                //Clamp the rotation average to be within a specific value range
+                rotAverageY = ClampAngle(rotAverageY, minimumY, maximumY);
+                rotAverageX = ClampAngle(rotAverageX, minimumX, maximumX);
 
-				//Standard maths to find the average
-				rotAverageY /= rotArrayY.Count;
-				rotAverageX /= rotArrayX.Count;
+                //Get the rotation you will be at next as a Quaternion
+                Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);
+                Quaternion xQuaternion = Quaternion.AngleAxis(rotAverageX, Vector3.up);
 
-				//Clamp the rotation average to be within a specific value range
-				rotAverageY = ClampAngle(rotAverageY, minimumY, maximumY);
-				rotAverageX = ClampAngle(rotAverageX, minimumX, maximumX);
+                //Rotate
+                transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+            }
+            else if (axes == RotationAxes.MouseX)
+            {
+                rotAverageX = 0f;
+                rotationX += Input.GetAxis("Mouse X") * sensitivityX;
+                rotArrayX.Add(rotationX);
+                if (rotArrayX.Count >= frameCounter)
+                {
+                    rotArrayX.RemoveAt(0);
+                }
+                for (int i = 0; i < rotArrayX.Count; i++)
+                {
+                    rotAverageX += rotArrayX[i];
+                }
+                rotAverageX /= rotArrayX.Count;
+                rotAverageX = ClampAngle(rotAverageX, minimumX, maximumX);
+                Quaternion xQuaternion = Quaternion.AngleAxis(rotAverageX, Vector3.up);
+                transform.localRotation = originalRotation * xQuaternion;
+            }
+            else
+            {
+                rotAverageY = 0f;
+                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                rotArrayY.Add(rotationY);
+                if (rotArrayY.Count >= frameCounter)
+                {
+                    rotArrayY.RemoveAt(0);
+                }
+                for (int j = 0; j < rotArrayY.Count; j++)
+                {
+                    rotAverageY += rotArrayY[j];
+                }
+                rotAverageY /= rotArrayY.Count;
+                rotAverageY = ClampAngle(rotAverageY, minimumY, maximumY);
+                Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);
+                transform.localRotation = originalRotation * yQuaternion;
+            }
+        }
 
-				//Get the rotation you will be at next as a Quaternion
-				Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);
-				Quaternion xQuaternion = Quaternion.AngleAxis(rotAverageX, Vector3.up);
+        private void Sprint()
+        {
+            if (Input.GetButton("Dash") && Input.GetAxis("Vertical") > 0)
+            {
+                if (sprintAmount > 0 && !FindObjectOfType<WeaponSwitcher>().GetCurrentWeapon().IsReloading())
+                {
+                    dash = true;
+                    currentMoveSpeed = sprintSpeed;
+                    sprintAmount = sprintAmount - (Time.deltaTime * sprintConsumption);
+                }
+                else
+                {
+                    dash = false;
+                    currentMoveSpeed = originalSpeed;
+                }
+            }
 
-				//Rotate
-				transform.localRotation = originalRotation * xQuaternion * yQuaternion;
-			}
-			else if (axes == RotationAxes.MouseX)
-			{
-				rotAverageX = 0f;
-				rotationX += Input.GetAxis("Mouse X") * sensitivityX;
-				rotArrayX.Add(rotationX);
-				if (rotArrayX.Count >= frameCounter)
-				{
-					rotArrayX.RemoveAt(0);
-				}
-				for (int i = 0; i < rotArrayX.Count; i++)
-				{
-					rotAverageX += rotArrayX[i];
-				}
-				rotAverageX /= rotArrayX.Count;
-				rotAverageX = ClampAngle(rotAverageX, minimumX, maximumX);
-				Quaternion xQuaternion = Quaternion.AngleAxis(rotAverageX, Vector3.up);
-				transform.localRotation = originalRotation * xQuaternion;
-			}
-			else
-			{
-				rotAverageY = 0f;
-				rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-				rotArrayY.Add(rotationY);
-				if (rotArrayY.Count >= frameCounter)
-				{
-					rotArrayY.RemoveAt(0);
-				}
-				for (int j = 0; j < rotArrayY.Count; j++)
-				{
-					rotAverageY += rotArrayY[j];
-				}
-				rotAverageY /= rotArrayY.Count;
-				rotAverageY = ClampAngle(rotAverageY, minimumY, maximumY);
-				Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);
-				transform.localRotation = originalRotation * yQuaternion;
-			}
-		}
+            else
+            {
+                dash = false;
+                currentMoveSpeed = originalSpeed;
 
-		void FixedUpdate()
+                if (sprintAmount < 100)
+                {
+                    sprintAmount = sprintAmount + (Time.deltaTime * sprintConsumption);
+                }
+            }
+        }
+
+        void FixedUpdate()
 		{
 
 			// Reset air jumps if the player touches the ground.
@@ -365,7 +385,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			// Resets input to false so it requires another key press.
 			jump = false;
-			dash = false;
 
 		}
 
@@ -461,5 +480,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			}
 			return movementDirection.magnitude;
 		}
+
+		public bool IsDashing()
+        {
+			return dash;
+        }
 	}
 }

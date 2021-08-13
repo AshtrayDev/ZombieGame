@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Weapon : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Weapon : MonoBehaviour
 
     int ammoInClip;
     int storedAmmo;
+ 
 
     WeaponDelay weaponDelay;
     PlayerPoints playerPoints;
@@ -26,8 +28,11 @@ public class Weapon : MonoBehaviour
     Camera playerCam;
     UIHandler ui;
     Crosshair crosshair;
+    RigidbodyFirstPersonController controller;
+    
 
-    bool isReloading;
+    public bool isReloading;
+    public bool isSprinting = false;
 
     private void Awake()
     {
@@ -38,6 +43,7 @@ public class Weapon : MonoBehaviour
         switcher = GetComponentInParent<WeaponSwitcher>();
         ui = FindObjectOfType<UIHandler>();
         crosshair = FindObjectOfType<Crosshair>();
+        controller = FindObjectOfType<RigidbodyFirstPersonController>();
     }
 
     private void Start()
@@ -77,11 +83,22 @@ public class Weapon : MonoBehaviour
         {
             Reload();
         }
+
+        if (controller.dash)
+        {
+            animator.SetBool("Sprint", true);
+            isSprinting = true;
+        }
+        else
+        {
+            animator.SetBool("Sprint", false);
+            isSprinting = false;
+        }
     }
 
     void CanWeaponShoot()
     {
-        if(ammoInClip > 0 && weaponDelay.CanWeaponShoot(this) && !isReloading)
+        if(ammoInClip > 0 && weaponDelay.CanWeaponShoot(this) && !isReloading && !isSprinting)
         {
             Shoot();
         }

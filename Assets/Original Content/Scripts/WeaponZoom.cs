@@ -55,10 +55,9 @@ public class WeaponZoom : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire2") && !weapon.IsReloading())
+        if (Input.GetButton("Fire2") && !weapon.IsReloading() && !weapon.isSprinting)
         {
             Zoom();
-            uiHandler.SetActiveReticleUI(false);
             crosshair.ADS();
             animator.SetBool("ADS", true);
         }
@@ -66,7 +65,6 @@ public class WeaponZoom : MonoBehaviour
         else
         {
             StopZoom();
-            uiHandler.SetActiveReticleUI(true);
             crosshair.ReleaseADS();
             animator.SetBool("ADS", false);
         }
@@ -80,7 +78,6 @@ public class WeaponZoom : MonoBehaviour
 
     private void Zoom()
     {
-
         uiHandler.SetActiveReticleUI(false);
 
         if(transform.localPosition != zoomPos && transform.localRotation != Quaternion.Euler(zoomRotation))
@@ -111,7 +108,15 @@ public class WeaponZoom : MonoBehaviour
 
     private void StopZoom()
     {
-        uiHandler.SetActiveReticleUI(true);
+        if (!weapon.isSprinting)
+        {
+            uiHandler.SetActiveReticleUI(true);
+        }
+
+        else
+        {
+            uiHandler.SetActiveReticleUI(false);
+        }
 
         if (transform.localPosition != originalPos && transform.localRotation != Quaternion.Euler(originalRotation))
         {
