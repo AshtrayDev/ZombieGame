@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
-    List<Animator> planks = new List<Animator>();
     List<Animator> activePlanks = new List<Animator>();
-    [SerializeField] AnimationClip destroyAnim;
-    int plankCount;
-    int maxPlanks;
+    List<Animator> inactivePlanks = new List<Animator>();
     bool isTriggered = false;
     bool repairDelay = false;
     bool isBarrierClear = false;
@@ -20,11 +17,9 @@ public class Barrier : MonoBehaviour
         {
             if (transform.GetComponent<Animator>())
             {
-                planks.Add(transform.GetComponent<Animator>());
+                activePlanks.Add(transform.GetComponent<Animator>());
             }
         }
-        plankCount = planks.Count;
-        maxPlanks = plankCount;
     }
 
     private void Update()
@@ -58,15 +53,18 @@ public class Barrier : MonoBehaviour
     {
         if (!isBarrierClear)
         {
-            DestroyBarrier(planks[plankCount - 1]);
+            DestroyBarrier(activePlanks[activePlanks.Count-1]);
         }
     }
 
     public void RepairBarrier()
     {
-        if (plankCount < maxPlanks)
+        if (inactivePlanks.Count > 0)
         {
-            planks[plankCount].SetTrigger("Repair");
+            inactivePlanks[inactivePlanks.Count-1].SetTrigger("Repair");
+            activePlanks.Add(inactivePlanks[inactivePlanks.Count - 1]);
+            inactivePlanks.Remove(inactivePlanks[inactivePlanks.Count - 1]);
+
             repairDelay = true;
         }
     }
@@ -74,27 +72,25 @@ public class Barrier : MonoBehaviour
     void DestroyBarrier(Animator plank)
     {
         plank.SetTrigger("Destroy");
+        inactivePlanks.Add(plank);
+        activePlanks.Remove(plank);
     }
 
     public void DestroyBarrierAnim()
     {
-        if(plankCount == 1)
+        if(activePlanks.Count == 0)
         {
-            plankCount--;
             isBarrierClear = true;
         }
         else
         {
-            plankCount--;
+            
         }
-
-        repairDelay = false;
     }
 
     public void RepairBarrierAnim()
     {
         repairDelay = false;
-        plankCount++;
         isBarrierClear = false;
     }
 
