@@ -7,11 +7,14 @@ public class WeaponDelay : MonoBehaviour
     List<Weapon> weapons = new List<Weapon>();
     List<bool> weaponDelays = new List<bool>();
 
-    WeaponSwitcher switcher;   
+    WeaponSwitcher switcher;
+    PlayerPerk perk;
+    float delayMultiplier = 1f;
 
     private void Awake()
     {
         switcher = GetComponent<WeaponSwitcher>();
+        perk = FindObjectOfType<PlayerPerk>();
     }
 
     IEnumerator DelayWeapon(int weaponIndex, float shotDelay)
@@ -40,7 +43,7 @@ public class WeaponDelay : MonoBehaviour
     public void StartDelay(Weapon weapon)
     {
         int weaponIndex = weapons.IndexOf(weapon);
-        StartCoroutine(DelayWeapon(weaponIndex, weapon.GetShotDelay()));
+        StartCoroutine(DelayWeapon(weaponIndex, weapon.GetShotDelay() * perk.delayMultiplier));
     }
 
     public void AddWeapon(Weapon weapon)

@@ -22,7 +22,8 @@ public class Weapon : MonoBehaviour
  
 
     WeaponDelay weaponDelay;
-    PlayerPoints playerPoints;
+    PlayerPoints points;
+    PlayerPerk perk;
     Animator animator;
     WeaponSwitcher switcher;
     Camera playerCam;
@@ -38,7 +39,8 @@ public class Weapon : MonoBehaviour
     {
         playerCam = transform.transform.GetComponentInParent<Camera>();
         weaponDelay = GetComponentInParent<WeaponDelay>();
-        playerPoints = FindObjectOfType<PlayerPoints>();
+        points = FindObjectOfType<PlayerPoints>();
+        perk = FindObjectOfType<PlayerPerk>();
         animator = GetComponent<Animator>();
         switcher = GetComponentInParent<WeaponSwitcher>();
         ui = FindObjectOfType<UIHandler>();
@@ -108,6 +110,7 @@ public class Weapon : MonoBehaviour
     {
         if(ammoInClip < maxAmmoInClip && storedAmmo > 0)
         {
+            animator.speed = perk.reloadSpeed;
             animator.SetTrigger("Reload");
             isReloading = true;
         }

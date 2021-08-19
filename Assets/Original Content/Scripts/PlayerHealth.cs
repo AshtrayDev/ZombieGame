@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float health = 100f;
+    [SerializeField] float currentHealth = 100f;
+    [SerializeField] float maxHealth = 100f;
+    [SerializeField] float regenDelay = 2f;
+    [SerializeField] float regenSpeed = 5f;
+
+    bool regen;
 
     DeathHandler deathHandler;
 
@@ -14,18 +19,72 @@ public class PlayerHealth : MonoBehaviour
         deathHandler = GetComponent<DeathHandler>();
     }
 
-    public void ChangeHealth(float addedHealth)
+    private void Update()
     {
-        health = health + addedHealth;
+        if (regen)
+        {
+            Regen();
+        }
+    }
+
+    public void AddHealth(float addedHealth)
+    {
+        if(addedHealth < 0)
+        {
+            ResetRegenDelay();
+        }
+
+        currentHealth = currentHealth + addedHealth;
         CheckHealth();
+    }
+
+    void SetHealth(float newHealth)
+    {
+        currentHealth = newHealth;
+    }
+
+    public void ChangeMaxHealth(float newHealth)
+    {
+        maxHealth = newHealth;
     }
 
     void CheckHealth()
     {
-        if(health <= 0)
+        if(currentHealth <= 0)
         {
             deathHandler.DeathSequence();
         }
+    }
+
+    void ResetRegenDelay()
+    {
+        regen = false;
+        StopCoroutine(RegenTimer());
+        StartCoroutine(RegenTimer());
+    }
+
+    void Regen()
+    {
+        if(currentHealth < maxHealth)
+        {
+            AddHealth(regenSpeed * Time.deltaTime);
+        }
+
+        else if(currentHealth > maxHealth)
+        {
+            SetHealth(maxHealth);
+        }
+    }
+
+    IEnumerator RegenTimer()
+    {
+        yield return new WaitForSeconds(regenDelay);
+        regen = true;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 
 }

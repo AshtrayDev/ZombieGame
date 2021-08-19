@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7871958315926894758}
   - component: {fileID: 7871958315926894759}
   - component: {fileID: 4976969353341529294}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7871958316142216032}
   - component: {fileID: 7871958316142216047}
   - component: {fileID: 7871958316142216046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 7871958316474605099}
   - component: {fileID: 7871958316474605098}
   - component: {fileID: 7871958316474605097}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 7871958316744447341}
   - component: {fileID: 7871958316744447340}
   - component: {fileID: 7871958316744447339}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 7871958317377154179}
   - component: {fileID: 7871958317377154180}
   - component: {fileID: 3403445295195387340}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 7871958317559332155}
   - component: {fileID: 7871958317559332156}
   - component: {fileID: 1087957972280411704}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 7871958317578059456}
   - component: {fileID: 7871958317578059457}
   - component: {fileID: 1841311045421167543}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f4f5367406c844a92d62a1fd744fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyAnim: {fileID: 0}
 --- !u!65 &1841311045421167543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -795,7 +794,7 @@ GameObject:
   - component: {fileID: 7871958317625214178}
   - component: {fileID: 7871958317625214177}
   - component: {fileID: 7871958317625214176}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +889,7 @@ GameObject:
   - component: {fileID: 7871958317649950287}
   - component: {fileID: 7871958317649950286}
   - component: {fileID: 7871958317649950285}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +984,7 @@ GameObject:
   - component: {fileID: 7871958317672983820}
   - component: {fileID: 7871958317672983819}
   - component: {fileID: 4357026226245522456}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plank (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,7 +1065,7 @@ GameObject:
   - component: {fileID: 7871958317779035468}
   - component: {fileID: 7871958317779035467}
   - component: {fileID: 7679583716664074783}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plank (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -184,7 +184,6 @@ public class EnemyAI : MonoBehaviour
                 closestBarrier = barrier;
             }
         }
-        print(Vector3.Distance(currentPos, closestBarrier.transform.position));
         return closestBarrier;
     }
 

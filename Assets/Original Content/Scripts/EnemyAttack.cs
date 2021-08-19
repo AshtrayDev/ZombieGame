@@ -20,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if(player == null) { return; }
 
-        player.GetComponent<PlayerHealth>().ChangeHealth(-damage);
+        player.GetComponent<PlayerHealth>().AddHealth(-damage);
         Debug.Log("Enemy dealt " + damage + " damage!");
     }
 
