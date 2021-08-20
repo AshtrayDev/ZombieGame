@@ -172,7 +172,6 @@ public class Weapon : MonoBehaviour
     public void DeleteWeapon()
     {
         weaponDelay.RemoveWeapon(this);
-        Destroy(gameObject);
     }
 
     public float GetShotDelay()

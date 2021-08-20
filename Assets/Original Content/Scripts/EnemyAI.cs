@@ -78,16 +78,26 @@ public class EnemyAI : MonoBehaviour
 
         else if (navMeshAgent.remainingDistance <= attackRange)
         {
-            print(navMeshAgent.remainingDistance);
             AttackTarget();
         }
     }
 
     void EngagePlayer()
     {
-        target = FindObjectOfType<PlayerHealth>().transform;
-        navMeshAgent.SetDestination(target.position);
-        FaceTarget();
+        if (FindObjectOfType<DeathHandler>().isDying)
+        {
+            target = FindClosestBarrier().transform;
+            navMeshAgent.SetDestination(target.position);
+            FaceTarget();
+        }
+
+        else
+        {
+            target = FindObjectOfType<PlayerHealth>().transform;
+            navMeshAgent.SetDestination(target.position);
+            FaceTarget();
+        }
+
 
 
 

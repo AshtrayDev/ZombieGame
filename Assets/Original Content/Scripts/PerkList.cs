@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum PerkList
 {
-    quickRevive, juggernog, speedCola, doubleTap
+    QuickRevive, Juggernog, SpeedCola, DoubleTap
 }

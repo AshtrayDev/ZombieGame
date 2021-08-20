@@ -8,6 +8,7 @@ public class PlayerPerk : MonoBehaviour
 
     public float reloadSpeed = 1f;
     public float delayMultiplier = 1f;
+    public bool quickReviveOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,25 +30,30 @@ public class PlayerPerk : MonoBehaviour
 
     public void RemovePerk(PerkList perk)
     {
-        perks.Remove(perk);
         PerkEffect(false, perk);
+        perks.Remove(perk);
     }
 
     public void PerkEffect(bool state, PerkList perkName)
     {
-        if(perkName == PerkList.juggernog)
+        if(perkName == PerkList.Juggernog)
         {
             Juggernog(state);
         }
 
-        if (perkName == PerkList.speedCola)
+        if (perkName == PerkList.SpeedCola)
         {
             SpeedCola(state);
         }
 
-        if (perkName == PerkList.doubleTap)
+        if (perkName == PerkList.DoubleTap)
         {
             DoubleTap(state);
+        }
+
+        if (perkName == PerkList.QuickRevive)
+        {
+            QuickRevive(state);
         }
     }
 
@@ -92,6 +98,19 @@ public class PlayerPerk : MonoBehaviour
         }
     }
 
+    void QuickRevive(bool state)
+    {
+        if (state)
+        {
+            quickReviveOn = true;
+        }
+
+        else
+        {
+            quickReviveOn = false;
+        }
+    }
+
     public bool HasPerk(PerkList checkedPerk)
     {
         foreach(PerkList perk in perks)
@@ -103,5 +122,15 @@ public class PlayerPerk : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void RemoveAllPerks()
+    {
+        foreach(PerkList perk in perks)
+        {
+            PerkEffect(false, perk);
+        }
+
+        perks.Clear();
     }
 }

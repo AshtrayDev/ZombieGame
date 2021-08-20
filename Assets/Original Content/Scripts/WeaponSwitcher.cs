@@ -5,6 +5,9 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int currentWeaponID = 0;
+    [SerializeField] Weapon deathWeapon;
+
+    bool isAllowedToSwitch = true;
 
     List<Weapon> weapons = new List<Weapon>();
     Weapon currentWeapon;
@@ -33,7 +36,7 @@ public class WeaponSwitcher : MonoBehaviour
             if (weaponIndex == currentWeaponID)
             {
                 weapon.gameObject.SetActive(true);
-                currentWeapon = weapon.GetComponent<Weapon>();
+                currentWeapon = weapon;
             }
 
             else
@@ -47,17 +50,37 @@ public class WeaponSwitcher : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetAxis("SwitchWeapon") < 0 && currentWeaponID < GetAmountOfWeapons()-1)
+        if (isAllowedToSwitch)
         {
-            currentWeaponID++;
-            HolsterWeapon(currentWeapon);
-        }
+            if (Input.GetAxis("SwitchWeapon") < 0 && currentWeaponID < GetAmountOfWeapons() - 1)
+            {
+                if(currentWeapon != null)
+                {
+                    currentWeaponID++;
+                    HolsterWeapon(currentWeapon);
+                }
 
-        if (Input.GetAxis("SwitchWeapon") > 0 && currentWeaponID > 0)
-        {
-            currentWeaponID--;
-            HolsterWeapon(currentWeapon);
+                else
+                {
+                    currentWeaponID++;
+                    SetWeaponActive();
+                }
+            }
+
+            if (Input.GetAxis("SwitchWeapon") > 0 && currentWeaponID > 0)
+            {
+                if (currentWeapon != null)
+                {
+                    currentWeaponID--;
+                    HolsterWeapon(currentWeapon);
+                }
+
+                else
+                {
+                    currentWeaponID--;
+                    SetWeaponActive();
+                }
+            }
         }
     }
     
@@ -90,5 +113,34 @@ public class WeaponSwitcher : MonoBehaviour
     public Weapon GetCurrentWeapon()
     {
         return currentWeapon;
+    }
+
+    public void EquipWeapon(Weapon equipWeapon)
+    {
+        foreach(Weapon weapon in weapons)
+        {
+            if(weapon == equipWeapon)
+            {
+                currentWeaponID = weapons.IndexOf(weapon);
+                SetWeaponActive();
+                return;
+            }
+        }
+
+        Debug.LogWarning("EquipWeapon: equipWeapon not found.");
+    }
+
+    public void QuickReviveMode()
+    {
+        Instantiate(deathWeapon, transform.position, Quaternion.identity, transform);
+        isAllowedToSwitch = false;
+    }
+
+    public void QuickReviveModeEnd()
+    {
+        currentWeapon.DeleteWeapon();
+        currentWeaponID--;
+        SetWeaponActive();
+        isAllowedToSwitch = true;
     }
 }

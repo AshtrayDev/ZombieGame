@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         CheckHealth();
     }
 
-    void SetHealth(float newHealth)
+    public void SetHealth(float newHealth)
     {
         currentHealth = newHealth;
     }
