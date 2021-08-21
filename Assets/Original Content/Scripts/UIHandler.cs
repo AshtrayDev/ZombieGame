@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIHandler : MonoBehaviour
@@ -11,10 +12,27 @@ public class UIHandler : MonoBehaviour
     public GameObject addedPointsUI;
     public GameObject roundUI;
     public GameObject ammoUI;
+    public GameObject perkUI;
+
+    [SerializeField] Sprite jugImage;
+    [SerializeField] Sprite colaImage;
+    [SerializeField] Sprite tapImage;
+    [SerializeField] Sprite reviveImage;
+
+    Image[] sprites;
 
     [SerializeField] GameObject addPointsTextPrefab;
     [SerializeField] GameObject lostPointsTextPrefab;
-  
+
+    private void Start()
+    {
+        sprites = perkUI.GetComponentsInChildren<Image>();
+        foreach(Image sprite in sprites)
+        {
+            sprite.enabled = false;
+        }
+    }
+
     //SetActives----------------------------------------------
     public void SetActiveReticleUI(bool state)
     {
@@ -79,5 +97,45 @@ public class UIHandler : MonoBehaviour
     public void SetAmmoText(int clip, int stored)
     {
         ammoUI.GetComponentInChildren<TMP_Text>().text = clip.ToString() + " / " + stored.ToString();
+    }
+
+    //Perks
+    public void AddPerk(PerkList perk, int imageNum)
+    {
+        sprites[imageNum].sprite = FindPerkImage(perk);
+        sprites[imageNum].enabled = true;
+    }
+
+    public void RemovePerk(int imageNum)
+    {
+        print(imageNum);
+        sprites[imageNum].enabled = false;
+    }
+
+    Sprite FindPerkImage(PerkList perk)
+    {
+        switch (perk)
+        {
+            case PerkList.Juggernog:
+                {
+                    return jugImage;
+                }
+            case PerkList.SpeedCola:
+                {
+                    return colaImage;
+                }
+            case PerkList.DoubleTap:
+                {
+                    return tapImage;
+                }
+            case PerkList.QuickRevive:
+                {
+                    return reviveImage;
+                }
+            default:
+                {
+                    return null;
+                }
+        }
     }
 }

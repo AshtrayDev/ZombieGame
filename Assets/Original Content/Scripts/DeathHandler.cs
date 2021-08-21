@@ -34,7 +34,6 @@ public class DeathHandler : MonoBehaviour
     {
         if (isDying) { return; }
         isDying = true;
-        print(1);
         if (!GetComponent<PlayerPerk>().quickReviveOn)
         {
             Time.timeScale = 0;

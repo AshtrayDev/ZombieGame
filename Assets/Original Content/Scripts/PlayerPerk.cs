@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPerk : MonoBehaviour
 {
     List<PerkList> perks = new List<PerkList>();
 
+
     public float reloadSpeed = 1f;
     public float delayMultiplier = 1f;
     public bool quickReviveOn = false;
 
+    UIHandler ui;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ui = FindObjectOfType<UIHandler>();
     }
 
     // Update is called once per frame
@@ -26,11 +30,13 @@ public class PlayerPerk : MonoBehaviour
     {
         perks.Add(perk);
         PerkEffect(true, perk);
+        ui.AddPerk(perk, perks.Count - 1);
     }
 
     public void RemovePerk(PerkList perk)
     {
         PerkEffect(false, perk);
+        ui.RemovePerk(perks.IndexOf(perk));
         perks.Remove(perk);
     }
 
@@ -129,6 +135,7 @@ public class PlayerPerk : MonoBehaviour
         foreach(PerkList perk in perks)
         {
             PerkEffect(false, perk);
+            ui.RemovePerk(perks.IndexOf(perk));
         }
 
         perks.Clear();
