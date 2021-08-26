@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
 {
+    [SerializeField] float holsterSpeed = 1;
+    [SerializeField] float knifeHolsterSpeed = 4;
+
     [SerializeField] int currentWeaponID = 0;
     [SerializeField] Weapon deathWeapon;
 
     bool isAllowedToSwitch = true;
+    bool isKnifing = false;
 
     List<Weapon> weapons = new List<Weapon>();
     Weapon currentWeapon;
@@ -19,6 +23,12 @@ public class WeaponSwitcher : MonoBehaviour
 
     public void SetWeaponActive()
     {
+        isKnifing = false;
+
+        if(currentWeapon != null)
+        {
+            currentWeapon.GetComponent<Animator>().speed = holsterSpeed;
+        }
 
         int weaponIndex = 0;
         
@@ -26,11 +36,8 @@ public class WeaponSwitcher : MonoBehaviour
         foreach(Weapon weapon in weapons)
         {
 
-            //Resets every weapon that is active
-            if(weapon.gameObject.activeInHierarchy)
-            {
-                weapon.SendMessage("OnWeaponReset", SendMessageOptions.DontRequireReceiver);
-            }
+            //Resets every weapon
+            weapon.SendMessage("OnWeaponReset", SendMessageOptions.DontRequireReceiver);
 
             //Activates and deactivates correct weapons
             if (weaponIndex == currentWeaponID)
@@ -86,11 +93,31 @@ public class WeaponSwitcher : MonoBehaviour
     
     void HolsterWeapon(Weapon weapon)
     {
+        weapon.GetComponent<Animator>().speed = holsterSpeed;
+
         if (weapon.gameObject.activeInHierarchy == true)
         {
             weapon.GetComponent<Animator>().SetTrigger("Holster");
         }
+    }
 
+    public void HolsterCurrentWeapon()
+    {
+        currentWeapon.GetComponent<Animator>().speed = knifeHolsterSpeed;
+        currentWeapon.GetComponent<Animator>().SetTrigger("Holster");
+        isKnifing = true;
+    }
+
+    public void HolsterFinish()
+    {
+        if (isKnifing)
+        {
+            FindObjectOfType<Melee>().KnifeAnimStart();
+        }
+        else
+        {
+            SetWeaponActive();
+        }
     }
 
     public void AddWeapon(Weapon weapon)

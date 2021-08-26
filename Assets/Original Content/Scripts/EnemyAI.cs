@@ -16,10 +16,10 @@ public class EnemyAI : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
     Animator animator;
-    bool isProvoked = false;
     bool isThroughBarrier = false;
     bool isClimbing = false;
     bool hasMoved = false;
+    public bool isAttackingBarrier = false;
     float currentDistanceFromTarget = Mathf.Infinity;
 
     public bool isRunner = false;
@@ -40,22 +40,21 @@ public class EnemyAI : MonoBehaviour
 
         if(target != null)
         {
-            currentDistanceFromTarget = Vector3.Distance(target.position, transform.position);
+            currentDistanceFromTarget = Vector3.Distance(target.position, transform.position); 
         }
 
-        if(currentDistanceFromTarget == Mathf.Infinity)
+        if (isAttackingBarrier && !isThroughBarrier)
         {
-            
+            AttackTarget();
         }
 
-        if (!isThroughBarrier)
+        else if (!isThroughBarrier && !isAttackingBarrier)
         {
             EngageBarrier(FindClosestBarrier());
         }
 
         else if (currentDistanceFromTarget < chaseRange)
         {
-            isProvoked = true;
             EngagePlayer();   
         }
     }
@@ -66,17 +65,17 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.SetDestination(target.transform.position);
         FaceTarget();
 
-        if (navMeshAgent.remainingDistance == Mathf.Infinity || navMeshAgent.remainingDistance == 0)
+        if (currentDistanceFromTarget == Mathf.Infinity || currentDistanceFromTarget == 0)
         {
             ChaseTarget();
         }
 
-        else if (navMeshAgent.remainingDistance > attackRange)
+        else if (currentDistanceFromTarget > attackRange)
         {
             ChaseTarget();
         }
 
-        else if (navMeshAgent.remainingDistance <= attackRange)
+        else if (currentDistanceFromTarget <= attackRange && isAttackingBarrier)
         {
             AttackTarget();
         }
@@ -101,17 +100,17 @@ public class EnemyAI : MonoBehaviour
 
 
 
-        if (navMeshAgent.remainingDistance == Mathf.Infinity)
+        if (currentDistanceFromTarget == Mathf.Infinity)
         {
             ChaseTarget();
         }
         
-        if (navMeshAgent.remainingDistance > attackRange) 
+        if (currentDistanceFromTarget > attackRange) 
         {
             ChaseTarget();
         }
 
-        else if (navMeshAgent.remainingDistance <= attackRange)
+        else if (currentDistanceFromTarget <= attackRange)
         {
             AttackTarget();
         }
@@ -170,11 +169,6 @@ public class EnemyAI : MonoBehaviour
             navMeshAgent.speed = 0;
         }
 
-    }
-
-    void OnDamageTaken()
-    {
-        isProvoked = true;
     }
 
     Barrier FindClosestBarrier()

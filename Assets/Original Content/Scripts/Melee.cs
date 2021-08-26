@@ -7,19 +7,21 @@ public class Melee : MonoBehaviour
 
     [SerializeField] float meleeDamage;
     PlayerHealth playerHealth;
-    BoxCollider collider;
+    BoxCollider box;
+    WeaponSwitcher switcher;
+    Weapon currentWeapon;
 
     private void Awake()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
-        collider = GetComponent<BoxCollider>();
-        
+        box = GetComponent<BoxCollider>();
+        switcher = FindObjectOfType<WeaponSwitcher>();
     }
     private void Update()
     {
         if (Input.GetButtonDown("Melee"))
         {
-            GetComponent<Animator>().SetTrigger("MeleeTrigger");
+            switcher.HolsterCurrentWeapon();
         }
     }
 
@@ -29,13 +31,19 @@ public class Melee : MonoBehaviour
         if (other.GetComponentInParent<EnemyHealth>() != null)
         {
             other.GetComponentInParent<EnemyHealth>().TakeDamage(meleeDamage, EnemyHealth.DamageType.melee);
+            box.enabled = false;
         }
-        
-        collider.enabled = false;
     }
 
     public void KnifeAnimStart()
     {
-        collider.enabled = true;
+        GetComponent<Animator>().SetTrigger("MeleeTrigger");
+        box.enabled = true;
+    }
+
+    public void KnifeAnimEnd()
+    {
+        box.enabled = false;
+        switcher.SetWeaponActive();
     }
 }

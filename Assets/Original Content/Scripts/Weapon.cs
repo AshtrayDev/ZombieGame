@@ -34,6 +34,7 @@ public class Weapon : MonoBehaviour
 
     public bool isReloading;
     public bool isSprinting = false;
+    public bool isDrawing = false;
 
     private void Awake()
     {
@@ -54,11 +55,13 @@ public class Weapon : MonoBehaviour
         ammoInClip = maxAmmoInClip;
         storedAmmo = maxAmmo;
         RefreshAmmoUI();
+        isDrawing = true;
     }
 
     private void OnEnable()
     {
         RefreshAmmoUI();
+        isDrawing = true;
     }
 
 
@@ -100,7 +103,7 @@ public class Weapon : MonoBehaviour
 
     void CanWeaponShoot()
     {
-        if(ammoInClip > 0 && weaponDelay.CanWeaponShoot(this) && !isReloading && !isSprinting)
+        if(ammoInClip > 0 && weaponDelay.CanWeaponShoot(this) && !isReloading && !isSprinting && !isDrawing)
         {
             Shoot();
         }
@@ -186,7 +189,13 @@ public class Weapon : MonoBehaviour
 
     public void FinishHolsterAnim()
     {
-        switcher.SetWeaponActive();
+        switcher.HolsterFinish();
+        gameObject.SetActive(false);
+    }
+
+    public void FinishDrawAnim()
+    {
+        isDrawing = false;
     }
 
     public void FinishReloadAnim()
@@ -205,5 +214,11 @@ public class Weapon : MonoBehaviour
 
         RefreshAmmoUI();
         isReloading = false;
+    }
+
+    public void OnWeaponReset()
+    {
+        isReloading = false;
+        print("received");
     }
 }

@@ -32,19 +32,31 @@ public class Barrier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerHealth>())
+        if (other.GetComponentInParent<PlayerHealth>())
         {
             FindObjectOfType<UIHandler>().SetToolTipRepairBarrier();
             isTriggered = true;
         }
+
+        else if (other.GetComponentInParent<EnemyAI>())
+        {
+            other.GetComponentInParent<EnemyAI>().isAttackingBarrier = true;
+        }
+
+        print(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerHealth>())
+        if (other.GetComponentInParent<PlayerHealth>())
         {
             FindObjectOfType<UIHandler>().SetActiveTooltipUI(false);
             isTriggered = false;
+        }
+
+        else if (other.GetComponentInParent<EnemyAI>())
+        {
+            other.GetComponentInParent<EnemyAI>().isAttackingBarrier = false;
         }
     }
 

@@ -60,4 +60,5 @@ public class WeaponDelay : MonoBehaviour
         switcher.RemoveWeapon(weapon);
         Destroy(weapon.gameObject);
     }
+
 }

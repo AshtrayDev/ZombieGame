@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
     {
         health = health - amount;
         playerPoints.AddPoints(10);
-        BroadcastMessage("OnDamageTaken");
+        BroadcastMessage("OnDamageTaken", SendMessageOptions.DontRequireReceiver);
         if (IsHealthZero())
         {
             if(damageType == DamageType.body)
