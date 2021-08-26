@@ -249,6 +249,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1841311045421167543, guid: f6e88379947d77643a55919976ee3672, type: 3}
+      propertyPath: m_Size.z
+      value: 1.8160431
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841311045421167543, guid: f6e88379947d77643a55919976ee3672, type: 3}
+      propertyPath: m_Center.x
+      value: -0.47999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841311045421167543, guid: f6e88379947d77643a55919976ee3672, type: 3}
+      propertyPath: m_Center.z
+      value: -0.6155759
+      objectReference: {fileID: 0}
     - target: {fileID: 7871958316335521408, guid: f6e88379947d77643a55919976ee3672, type: 3}
       propertyPath: m_LocalScale.y
       value: 3.5
@@ -8155,17 +8167,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 872986884, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: startingPoints
+      value: 5000
+      objectReference: {fileID: 0}
     - target: {fileID: 1158213362288651409, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1158213362288750773, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.5
+      value: 33.5
       objectReference: {fileID: 0}
     - target: {fileID: 1158213362288750773, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.154
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1158213362288750773, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9200,6 +9216,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1841311045421167543, guid: f6e88379947d77643a55919976ee3672, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4928207
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841311045421167543, guid: f6e88379947d77643a55919976ee3672, type: 3}
+      propertyPath: m_Center.x
+      value: -0.47999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841311045421167543, guid: f6e88379947d77643a55919976ee3672, type: 3}
+      propertyPath: m_Center.z
+      value: -0.8677559
+      objectReference: {fileID: 0}
     - target: {fileID: 7871958315926894757, guid: f6e88379947d77643a55919976ee3672, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.03336536
