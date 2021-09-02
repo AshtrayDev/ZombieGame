@@ -13,11 +13,17 @@ public class UIHandler : MonoBehaviour
     public GameObject roundUI;
     public GameObject ammoUI;
     public GameObject perkUI;
+    public GameObject pickupUI;
+
+    public RectTransform pointsTextTransform;
 
     [SerializeField] Sprite jugImage;
     [SerializeField] Sprite colaImage;
     [SerializeField] Sprite tapImage;
     [SerializeField] Sprite reviveImage;
+
+    [SerializeField] Sprite instakillImage;
+    [SerializeField] Sprite doublePointsImage;
 
     Image[] sprites;
 
@@ -65,23 +71,28 @@ public class UIHandler : MonoBehaviour
     {
         GameObject changedPoints;
 
+        Vector2 pos = pointsTextTransform.anchoredPosition;
+        print(pos);
+
         if (gainedPoints)
         {
-            changedPoints = Instantiate(addPointsTextPrefab, pointsUI.transform.transform.position, Quaternion.identity, addedPointsUI.transform);
+            changedPoints = Instantiate(addPointsTextPrefab, addedPointsUI.transform);
+            print(pos);
+            changedPoints.GetComponent<RectTransform>().anchoredPosition = pos;
         }
         else
         {
-            changedPoints = Instantiate(lostPointsTextPrefab, pointsUI.transform.transform.position, Quaternion.identity, addedPointsUI.transform);
+            changedPoints = Instantiate(lostPointsTextPrefab, pos, Quaternion.identity, addedPointsUI.transform);
         }
         
-        changedPoints.GetComponent<Animator>().Play(0);
+        changedPoints.GetComponentInChildren<Animator>().Play(0);
         if (gainedPoints)
         {
-            changedPoints.GetComponent<TMP_Text>().text = "+ " + points.ToString();
+            changedPoints.GetComponentInChildren<TMP_Text>().text = "+ " + points.ToString();
         }
         else
         {
-            changedPoints.GetComponent<TMP_Text>().text = "- " + points.ToString();
+            changedPoints.GetComponentInChildren<TMP_Text>().text = "- " + points.ToString();
         }
 
         Destroy(changedPoints, 2f);
@@ -136,6 +147,15 @@ public class UIHandler : MonoBehaviour
                 {
                     return null;
                 }
+        }
+    }
+
+    //Pickups
+    public void AddPickup(Pickup.PickupType type)
+    {
+        if(type == Pickup.PickupType.instakill)
+        {
+            
         }
     }
 }
