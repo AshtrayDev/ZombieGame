@@ -5,14 +5,18 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class Weapon : MonoBehaviour
 {
+    enum WeaponType {auto, semiauto, shotgun}
+
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
     [SerializeField] float weaponRange = 100f;
     [SerializeField] float weaponDamage = 25f;
     [SerializeField] float headshotMultiplier = 2;
-    [SerializeField] bool isAutomatic = false;
+    [SerializeField] WeaponType weaponType;
     [SerializeField] int ammoCost = 1;
+    [SerializeField] int hitsPerShot = 1;
     [SerializeField] float shotDelay = 0.5f;
+    [Range(0, 400)] public float crosshairOffset;
     [SerializeField] int maxAmmoInClip = 30;
     [SerializeField] int maxAmmo = 300;
 
@@ -67,7 +71,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (isAutomatic)
+        if (weaponType == WeaponType.auto)
         {
             if (Input.GetButton("Fire1"))
             {
@@ -125,13 +129,17 @@ public class Weapon : MonoBehaviour
         animator.SetTrigger("Fire");
         ammoInClip = ammoInClip - ammoCost;
         RefreshAmmoUI();
-        RaycastHit hit = ProcessRaycast();
-        weaponDelay.StartDelay(this);
 
-        if (hit.transform == null) { return; }
+        for (int i = 0; i < hitsPerShot; i++)
+        {
+            RaycastHit hit = ProcessRaycast();
+            weaponDelay.StartDelay(this);
 
-        InstantiateHitEffect(hit);
-        ProcessDamage(hit);
+            if (hit.transform == null) { return; }
+
+            InstantiateHitEffect(hit);
+            ProcessDamage(hit);
+        }
     }
 
     RaycastHit ProcessRaycast()
@@ -143,7 +151,15 @@ public class Weapon : MonoBehaviour
 
     void ProcessDamage(RaycastHit hit)
     {
-        if(hit.transform.gameObject.name == "HeadHitbox")
+        if(hit.transform.GetComponentInParent<EnemyHealth>() == null) { return; }
+
+        if (perk.HasGotPickup(Pickup.PickupType.instakill))
+        {
+            EnemyHealth enemyHealth = hit.transform.GetComponentInParent<EnemyHealth>();
+            enemyHealth.TakeDamage(999999999999999999, EnemyHealth.DamageType.body);
+        }
+
+        else if(hit.transform.gameObject.name == "HeadHitbox")
         {
             EnemyHealth enemyHealth = hit.transform.GetComponentInParent<EnemyHealth>();
             enemyHealth.TakeDamage(weaponDamage * headshotMultiplier, EnemyHealth.DamageType.headshot);
@@ -219,6 +235,5 @@ public class Weapon : MonoBehaviour
     public void OnWeaponReset()
     {
         isReloading = false;
-        print("received");
     }
 }

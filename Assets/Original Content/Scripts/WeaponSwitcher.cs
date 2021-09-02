@@ -44,6 +44,7 @@ public class WeaponSwitcher : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 currentWeapon = weapon;
+                FindObjectOfType<Crosshair>().ChangeCurrentWeapon(weapon);
             }
 
             else

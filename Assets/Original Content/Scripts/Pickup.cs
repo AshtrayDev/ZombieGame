@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    public enum PickupType
+    {
+        instakill, doublePoints, carpenter, nuke
+    }
+
+
+    [SerializeField] PickupType pickupType;
+    [SerializeField] int timer;
+
     [SerializeField] float rotateSpeed = 70f;
     [SerializeField] float hoverSpeed = 0.1f;
     [SerializeField] float hoverAmount = 0.1f;
@@ -11,11 +20,16 @@ public class Pickup : MonoBehaviour
     float startYPos;
     bool isMovingUp;
 
+    PlayerPerk perk;
+    LevelSettings settings;
+
     // Start is called before the first frame update
     void Start()
     {
+        settings = FindObjectOfType<LevelSettings>();
         startYPos = transform.position.y;
         isMovingUp = true;
+        perk = FindObjectOfType<PlayerPerk>();
     }
 
     // Update is called once per frame
@@ -49,7 +63,7 @@ public class Pickup : MonoBehaviour
             isMovingUp = false;
         }
 
-        if(isMovingUp == true)
+        if (isMovingUp == true)
         {
             transform.position = currentPos + newPos;
         }
@@ -61,6 +75,38 @@ public class Pickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if (other.GetComponent<PlayerHealth>())
+        {
+            PickupEffect();
+            Destroy(gameObject);
+        }
     }
+
+    void PickupEffect()
+    {
+
+        if (pickupType == PickupType.nuke)
+        {
+            foreach (EnemyHealth enemy in FindObjectsOfType<EnemyHealth>())
+            {
+                enemy.SetHealth(0);
+            }
+            FindObjectOfType<PlayerPoints>().AddPoints(settings.nukePoints);
+            return;
+        }
+
+        if (pickupType == PickupType.carpenter)
+        {
+            foreach(Barrier barrier in FindObjectsOfType<Barrier>())
+            {
+                barrier.Carpenter();
+            }
+            FindObjectOfType<PlayerPoints>().AddPoints(settings.carpenterPoints);
+            return;
+        }
+
+
+        perk.AddPickup(pickupType, timer);
+    }
+
 }

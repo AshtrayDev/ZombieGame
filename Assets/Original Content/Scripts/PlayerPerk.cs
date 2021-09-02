@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PlayerPerk : MonoBehaviour
 {
     List<PerkList> perks = new List<PerkList>();
-
+    List<Pickup.PickupType> pickups = new List<Pickup.PickupType>();
+    List<int> timers = new List<int>();
 
     public float reloadSpeed = 1f;
     public float delayMultiplier = 1f;
@@ -139,5 +140,48 @@ public class PlayerPerk : MonoBehaviour
         }
 
         perks.Clear();
+    }
+
+    //==========================================================================================================================
+
+
+    public void AddPickup(Pickup.PickupType type, int timer)
+    {
+        if(pickups.IndexOf(type) != -1)
+        {
+            Debug.LogWarning("Already have pickup, will add to timer.");
+            timers[pickups.IndexOf(type)] += timer;
+        }
+        else
+        {
+            pickups.Add(type);
+            StartCoroutine(AddTimer(timer, type));
+        }
+    }
+
+    IEnumerator AddTimer(int timer, Pickup.PickupType type)
+    {
+        timers.Add(timer);
+        while(timers[pickups.IndexOf(type)] > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            timers[pickups.IndexOf(type)]--;
+        }
+
+        timers.RemoveAt(pickups.IndexOf(type));
+        pickups.Remove(type);
+    }
+
+    public bool HasGotPickup(Pickup.PickupType type)
+    {
+        foreach(Pickup.PickupType pickup in pickups)
+        {
+            if(type == pickup)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

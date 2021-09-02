@@ -28,13 +28,13 @@ public class RoundSystem : MonoBehaviour
     {
         if(roundNum <= 10)
         {
-            zombieAmount = Mathf.RoundToInt(roundNum * 0.125f * 24);
+            zombieAmount = Mathf.RoundToInt(roundNum * 0.125f * 24); //Actual original zombies health formula
             zombieHP = zombieHP + 100;
         }
 
         else
         {
-            zombieHP = Mathf.RoundToInt(zombieHP + (zombieHP * 0.10f));
+            zombieHP = Mathf.RoundToInt(zombieHP + (zombieHP * 0.10f));  //Actual original zombies amount formula depending on round
             zombieAmount = Mathf.RoundToInt(0.000058f * roundNum * 
                 roundNum * roundNum + 0.074032f * roundNum * roundNum + 
                 0.718119f * roundNum + 14.7386999f);

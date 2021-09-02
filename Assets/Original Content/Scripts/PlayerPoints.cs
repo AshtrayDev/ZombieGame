@@ -7,12 +7,14 @@ public class PlayerPoints : MonoBehaviour
     [SerializeField] int startingPoints;
 
     UIHandler uiHandler;
+    PlayerPerk perk;
 
     int currentPoints;
 
     private void Awake()
     {
         uiHandler = FindObjectOfType<UIHandler>();
+        perk = FindObjectOfType<PlayerPerk>();
     }
     private void Start()
     {
@@ -34,6 +36,13 @@ public class PlayerPoints : MonoBehaviour
 
     public void AddPoints(int amount)
     {
+        if (perk.HasGotPickup(Pickup.PickupType.doublePoints))
+        {
+            currentPoints = currentPoints + amount * 2;
+            uiHandler.SetPointsUIText(currentPoints);
+            uiHandler.AddPointsUI(amount, true);
+        }
+
         currentPoints = currentPoints + amount;
         uiHandler.SetPointsUIText(currentPoints);
         uiHandler.AddPointsUI(amount, true);

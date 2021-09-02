@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c605eeb2ecf29f64f97c2603387dd9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPoints: 500
+  startingPoints: 5000
 --- !u!114 &373315468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4eb9a6a9303434083277494d2b0a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponID: 1
+  holsterSpeed: 1
+  knifeHolsterSpeed: 4
+  currentWeaponID: 0
   deathWeapon: {fileID: 1603477376435146278, guid: 123ab6299dfa3794abf00cdd2732de9d, type: 3}
 --- !u!114 &196123251
 MonoBehaviour:
@@ -396,6 +398,10 @@ PrefabInstance:
     - target: {fileID: 7944122969259152377, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
       propertyPath: m_Name
       value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944122969259152377, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}

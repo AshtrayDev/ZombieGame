@@ -19,20 +19,24 @@ public class Crosshair : MonoBehaviour
     [SerializeField][Range(0.01f, 0.05f)] float length;
     [SerializeField] [Range(0.001f, 0.01f)] float thickness;
     [SerializeField] float crosshairChangeSpeed = 10f;
-    [SerializeField] float velocityThreshold = 0.5f;
     [SerializeField] GameObject testBullet;
 
     RigidbodyFirstPersonController fpsController;
+    WeaponSwitcher switcher;
+    Weapon currentWeapon;
 
+    float rawSpread;
     bool isADS = false;
 
     private void Awake()
     {
         fpsController = FindObjectOfType<RigidbodyFirstPersonController>();
+        switcher = FindObjectOfType<WeaponSwitcher>();
     }
     private void Start()
     {
-        
+        currentWeapon = switcher.GetCurrentWeapon();
+        rawSpread = offset;
     }
 
     private void Update()
@@ -43,59 +47,68 @@ public class Crosshair : MonoBehaviour
 
     private void CalculateSpread()
     {
-        if (!isADS && fpsController.GetActualMoveSpeed() == 1)
+
+        if (!isADS && fpsController.GetActualMoveSpeed() == 1) //Walking
         {
-            if (spread < 100)
+            if (rawSpread < 100)
             {
-                spread = spread + crosshairChangeSpeed * Time.deltaTime;
+                rawSpread = rawSpread + crosshairChangeSpeed * Time.deltaTime;
             }
 
-            UpdateCrosshair();
         }
 
-        if (!isADS && fpsController.GetActualMoveSpeed() == 1)
+        if (!isADS && fpsController.GetActualMoveSpeed() == 1) // Walking after sprinting
         {
-            if (spread > 100)
+            if (rawSpread > 100)
             {
-                spread = spread - crosshairChangeSpeed * Time.deltaTime;
+                rawSpread = rawSpread - crosshairChangeSpeed * Time.deltaTime;
             }
         }
 
-        if (!isADS && fpsController.GetActualMoveSpeed() == 2)
+        if (!isADS && fpsController.GetActualMoveSpeed() == 2) // Sprinting
         {
-            if (spread < 200)
+            if (rawSpread < 200)
             {
-                spread = spread + crosshairChangeSpeed*2 * Time.deltaTime;
-            }
-
-            UpdateCrosshair();
-        }
-
-        if (!isADS && fpsController.GetActualMoveSpeed() == 0)
-        {
-            if (spread > 0)
-            {
-                spread = spread - crosshairChangeSpeed * Time.deltaTime;
+                rawSpread = rawSpread + crosshairChangeSpeed*2 * Time.deltaTime;
             }
         }
+
+        if (!isADS && fpsController.GetActualMoveSpeed() == 0) // Still
+        {
+            if (rawSpread > 0)
+            {
+                rawSpread = rawSpread - crosshairChangeSpeed * Time.deltaTime;
+            }
+        }
+
+        spread = rawSpread + offset;
     }
 
     private void OnValidate()
     {
+        
+        
         UpdateCrosshairSettings();
         UpdateCrosshair();
     }
 
     void UpdateCrosshair()
     {
-        top.GetComponent<RectTransform>().localPosition = new Vector3(0, spread + offset, 0);
-        bottom.GetComponent<RectTransform>().localPosition = new Vector3(0, -spread + -offset, 0);
-        left.GetComponent<RectTransform>().localPosition = new Vector3(-spread + -offset, 0, 0);
-        right.GetComponent<RectTransform>().localPosition = new Vector3(spread + offset, 0, 0);
+        if(currentWeapon != null)
+        {
+            offset = currentWeapon.crosshairOffset;
+        }
+
+        top.GetComponent<RectTransform>().localPosition = new Vector3(0, spread, 0);
+        bottom.GetComponent<RectTransform>().localPosition = new Vector3(0, -spread, 0);
+        left.GetComponent<RectTransform>().localPosition = new Vector3(-spread, 0, 0);
+        right.GetComponent<RectTransform>().localPosition = new Vector3(spread, 0, 0);
     }
 
     void UpdateCrosshairSettings()
     {
+        
+
         foreach (Transform transform in transform)
         {
             transform.GetComponent<Image>().color = color;
@@ -112,19 +125,24 @@ public class Crosshair : MonoBehaviour
     public Vector3 GetRandomAngle()
     {
         Vector3 angle = new Vector3();
-        angle = new Vector3(Random.Range(spread / 1000, -spread / 1000), Random.Range(spread / 1000, -spread / 1000), 0);
+        angle = new Vector3(Random.Range(spread / 1000, -spread / 1000), Random.Range(spread / 1000, -spread / 1000), Random.Range(spread / 1000, -spread / 1000));
         return angle;
     }
 
     public void ADS()
     {
         isADS = true;
-        spread = 0 + offset;
+        spread = 0 + offset/2;
     }
 
     public void ReleaseADS()
     {
         isADS = false;
+    }
+
+    public void ChangeCurrentWeapon(Weapon weapon)
+    {
+        currentWeapon = weapon;
     }
 
 }

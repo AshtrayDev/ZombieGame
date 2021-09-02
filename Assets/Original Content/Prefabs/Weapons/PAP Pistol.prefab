@@ -656,13 +656,15 @@ MonoBehaviour:
   weaponRange: 20
   weaponDamage: 25000
   headshotMultiplier: 2
-  isAutomatic: 0
+  weaponType: 1
   ammoCost: 1
+  hitsPerShot: 1
   shotDelay: 0.1
   maxAmmoInClip: 8
   maxAmmo: 32
   isReloading: 0
   isSprinting: 0
+  isDrawing: 0
 --- !u!114 &4143973407315910518
 MonoBehaviour:
   m_ObjectHideFlags: 0

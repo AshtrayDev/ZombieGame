@@ -216,11 +216,16 @@ MonoBehaviour:
   weaponRange: 100
   weaponDamage: 100
   headshotMultiplier: 4
-  isAutomatic: 1
+  weaponType: 0
   ammoCost: 1
+  hitsPerShot: 1
   shotDelay: 0.1
+  crosshairOffset: 0
   maxAmmoInClip: 30
   maxAmmo: 300
+  isReloading: 0
+  isSprinting: 0
+  isDrawing: 0
 --- !u!114 &6628369925857566164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalFOV: 90
-  zoomFOV: 45
+  zoomFOV: 70
   originalSens: 2
   zoomSpeed: 10
   zoomMovementSpeed: 2

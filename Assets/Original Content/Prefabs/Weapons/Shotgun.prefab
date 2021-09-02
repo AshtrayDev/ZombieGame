@@ -172,13 +172,15 @@ GameObject:
   m_Component:
   - component: {fileID: 180070233114030676}
   - component: {fileID: 2093110660660371736}
+  - component: {fileID: 54031872}
+  - component: {fileID: 54031871}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &180070233114030676
 Transform:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 8349926639395787249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.131, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.57728, y: 1, z: 1.4547}
   m_Children:
   - {fileID: 1365436355377523925}
   - {fileID: 4901699068465086259}
@@ -210,15 +212,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 6468565009965016290}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
-  weaponRange: 7
-  weaponDamage: 500
-  headshotMultiplier: 2
-  isAutomatic: 0
-  ammoCost: 2
-  shotDelay: 2
-  ammoInClip: 30
-  maxAmmo: 0
-  ammoType: 2
+  weaponRange: 100
+  weaponDamage: 200
+  headshotMultiplier: 1
+  weaponType: 2
+  ammoCost: 1
+  hitsPerShot: 8
+  shotDelay: 0.5
+  crosshairOffset: 200
+  maxAmmoInClip: 2
+  maxAmmo: 20
+  isReloading: 0
+  isSprinting: 0
+  isDrawing: 0
+--- !u!95 &54031872
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349926639395787249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ea62f173cde8724db43eed602c9899f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &54031871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349926639395787249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aedd88fc4bf3b84db4d0fa169fc7700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalFOV: 90
+  zoomFOV: 85
+  originalSens: 2
+  zoomSpeed: 1
+  zoomMovementSpeed: 2
+  zoomPos: {x: 0, y: 0, z: 0}
+  zoomRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &94290447989415461
 PrefabInstance:
   m_ObjectHideFlags: 0

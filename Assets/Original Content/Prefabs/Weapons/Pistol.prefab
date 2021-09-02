@@ -651,17 +651,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e375444ff27f499eaa6052769ab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
-  ammoSlot: {fileID: 0}
   muzzleFlash: {fileID: 1162831578450331474}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
   weaponRange: 20
   weaponDamage: 25
   headshotMultiplier: 2
-  isAutomatic: 0
+  weaponType: 1
   ammoCost: 1
+  hitsPerShot: 1
   shotDelay: 0.1
-  ammoType: 0
+  crosshairOffset: 32
+  maxAmmoInClip: 30
+  maxAmmo: 300
+  isReloading: 0
+  isSprinting: 0
+  isDrawing: 0
 --- !u!114 &4143973407315910518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,12 +678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aedd88fc4bf3b84db4d0fa169fc7700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsController: {fileID: 0}
-  playerCam: {fileID: 0}
   originalFOV: 90
-  zoomFOV: 90
+  zoomFOV: 80
   originalSens: 2
-  zoomSpeed: 4
+  zoomSpeed: 10
   zoomMovementSpeed: 2
   zoomPos: {x: 0, y: 0, z: 0}
   zoomRotation: {x: 0, y: 0, z: 0}

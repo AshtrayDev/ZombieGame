@@ -42,8 +42,6 @@ public class Barrier : MonoBehaviour
         {
             other.GetComponentInParent<EnemyAI>().isAttackingBarrier = true;
         }
-
-        print(other);
     }
 
     private void OnTriggerExit(Collider other)
@@ -111,4 +109,13 @@ public class Barrier : MonoBehaviour
         return isBarrierClear;
     }
 
+    public void Carpenter()
+    {
+        foreach (Animator plank in inactivePlanks)
+        {
+            plank.SetTrigger("Repair");
+            activePlanks.Add(plank);
+        }
+        inactivePlanks.Clear();
+    }
 }
