@@ -38,14 +38,18 @@ public class PlayerPoints : MonoBehaviour
     {
         if (perk.HasGotPickup(Pickup.PickupType.doublePoints))
         {
-            currentPoints = currentPoints + amount * 2;
+            currentPoints = currentPoints + (amount * 2);
+            uiHandler.SetPointsUIText(currentPoints);
+            uiHandler.AddPointsUI(amount * 2, true);
+        }
+
+        else
+        {
+            currentPoints = currentPoints + amount;
             uiHandler.SetPointsUIText(currentPoints);
             uiHandler.AddPointsUI(amount, true);
         }
 
-        currentPoints = currentPoints + amount;
-        uiHandler.SetPointsUIText(currentPoints);
-        uiHandler.AddPointsUI(amount, true);
     }
 
     public void RemovePoints(int amount)

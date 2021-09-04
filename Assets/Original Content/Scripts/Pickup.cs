@@ -22,6 +22,7 @@ public class Pickup : MonoBehaviour
 
     PlayerPerk perk;
     LevelSettings settings;
+    UIHandler ui;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class Pickup : MonoBehaviour
         startYPos = transform.position.y;
         isMovingUp = true;
         perk = FindObjectOfType<PlayerPerk>();
+        ui = FindObjectOfType<UIHandler>();
     }
 
     // Update is called once per frame
@@ -105,8 +107,9 @@ public class Pickup : MonoBehaviour
             return;
         }
 
-
+        //Timer based pickups
         perk.AddPickup(pickupType, timer);
+
     }
 
 }

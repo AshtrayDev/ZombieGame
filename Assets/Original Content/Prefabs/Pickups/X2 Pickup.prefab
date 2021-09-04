@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910a117ddc211e94b90723f6c6056d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoType: 0
-  ammoAmount: 1
+  pickupType: 1
+  timer: 5
   rotateSpeed: 40
   hoverSpeed: 0.05
   hoverAmount: 0.1

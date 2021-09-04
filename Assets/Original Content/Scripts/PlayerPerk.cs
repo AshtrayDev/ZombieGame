@@ -155,6 +155,7 @@ public class PlayerPerk : MonoBehaviour
         else
         {
             pickups.Add(type);
+            ui.AddPickup(type);
             StartCoroutine(AddTimer(timer, type));
         }
     }
@@ -170,6 +171,7 @@ public class PlayerPerk : MonoBehaviour
 
         timers.RemoveAt(pickups.IndexOf(type));
         pickups.Remove(type);
+        ui.RemovePickup(type);
     }
 
     public bool HasGotPickup(Pickup.PickupType type)

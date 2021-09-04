@@ -6,6 +6,7 @@ using TMPro;
 
 public class UIHandler : MonoBehaviour
 {
+    [Header("UI Links")]
     public GameObject reticleUI;
     public GameObject tooltipUI;
     public GameObject pointsUI;
@@ -15,25 +16,32 @@ public class UIHandler : MonoBehaviour
     public GameObject perkUI;
     public GameObject pickupUI;
 
-    public RectTransform pointsTextTransform;
-
+    [Header("Perks")]
     [SerializeField] Sprite jugImage;
     [SerializeField] Sprite colaImage;
     [SerializeField] Sprite tapImage;
     [SerializeField] Sprite reviveImage;
 
-    [SerializeField] Sprite instakillImage;
-    [SerializeField] Sprite doublePointsImage;
 
-    Image[] sprites;
-
+    [Header("Points")]
     [SerializeField] GameObject addPointsTextPrefab;
     [SerializeField] GameObject lostPointsTextPrefab;
+    public RectTransform pointsTextTransform;
+
+    [Header("Pickups")]
+    [SerializeField] Sprite instakillImage;
+    [SerializeField] Sprite doublePointsImage;
+    [SerializeField] GameObject pickupUIPrefab;
+    [SerializeField] float pickupUIYPos;
+
+    Image[] perkSprites;
+    List<GameObject> pickupWindows = new List<GameObject>();
+    List<Pickup.PickupType> types = new List<Pickup.PickupType>();
 
     private void Start()
     {
-        sprites = perkUI.GetComponentsInChildren<Image>();
-        foreach(Image sprite in sprites)
+        perkSprites = perkUI.GetComponentsInChildren<Image>();
+        foreach(Image sprite in perkSprites)
         {
             sprite.enabled = false;
         }
@@ -72,12 +80,10 @@ public class UIHandler : MonoBehaviour
         GameObject changedPoints;
 
         Vector2 pos = pointsTextTransform.anchoredPosition;
-        print(pos);
 
         if (gainedPoints)
         {
             changedPoints = Instantiate(addPointsTextPrefab, addedPointsUI.transform);
-            print(pos);
             changedPoints.GetComponent<RectTransform>().anchoredPosition = pos;
         }
         else
@@ -113,14 +119,14 @@ public class UIHandler : MonoBehaviour
     //Perks
     public void AddPerk(PerkList perk, int imageNum)
     {
-        sprites[imageNum].sprite = FindPerkImage(perk);
-        sprites[imageNum].enabled = true;
+        perkSprites[imageNum].sprite = FindPerkImage(perk);
+        perkSprites[imageNum].enabled = true;
     }
 
     public void RemovePerk(int imageNum)
     {
         print(imageNum);
-        sprites[imageNum].enabled = false;
+        perkSprites[imageNum].enabled = false;
     }
 
     Sprite FindPerkImage(PerkList perk)
@@ -153,9 +159,112 @@ public class UIHandler : MonoBehaviour
     //Pickups
     public void AddPickup(Pickup.PickupType type)
     {
-        if(type == Pickup.PickupType.instakill)
+        if (pickupWindows.Count == 0)
         {
-            
+            Vector2 pos = new Vector2(0, pickupUIYPos);
+            GameObject newUI = Instantiate(pickupUIPrefab, pickupUI.transform);
+            newUI.GetComponent<RectTransform>().anchoredPosition = pos;
+            newUI.GetComponent<Image>().sprite = GetSpriteFromPickupType(type);
+            pickupWindows.Add(newUI);
+            types.Add(type);
+        }
+
+        else
+        {
+
+
+            float size = pickupWindows[pickupWindows.Count - 1].GetComponent<RectTransform>().sizeDelta.x;
+
+            foreach (GameObject window in pickupWindows)
+            {
+                Vector2 newPos = window.transform.position;
+                newPos.x = newPos.x - size/2;
+                window.transform.position = newPos;
+            }
+
+            float xPos = pickupWindows[pickupWindows.Count - 1].GetComponent<RectTransform>().anchoredPosition.x;
+
+
+            Vector2 pos = new Vector2(xPos+size, pickupUIYPos);
+            GameObject newUI = Instantiate(pickupUIPrefab, pickupUI.transform);
+            newUI.GetComponent<RectTransform>().anchoredPosition = pos;
+            newUI.GetComponent<Image>().sprite = GetSpriteFromPickupType(type);
+            pickupWindows.Add(newUI);
+            types.Add(type);
+        }
+    }
+
+    public void RemovePickup(Pickup.PickupType type)
+    {
+        if(pickupWindows.Count == 0)
+        {
+            Debug.LogWarning("RemovePickup called when no pickup UIs active.");
+        }
+
+        if(pickupWindows.Count == 1)
+        {
+            GameObject window = FindUIWindow(type);
+            pickupWindows.Remove(window);
+            types.Remove(type);
+            Destroy(window);
+        }
+
+        if(pickupWindows.Count > 1)
+        {
+            GameObject window = FindUIWindow(type);
+            pickupWindows.Remove(window);
+            Destroy(window);
+            types.Remove(type);
+            RestructureExistingWindows();
+        }
+    }
+
+    GameObject FindUIWindow(Pickup.PickupType type)
+    {
+        foreach(Pickup.PickupType pickup in types)
+        {
+            if (pickup == type)
+            {
+                return pickupWindows[types.IndexOf(pickup)];
+            }
+        }
+
+        Debug.LogWarning("No windows found in FindUIWindow function.");
+        return null;
+    }
+
+    void RestructureExistingWindows()
+    {
+        float size = pickupWindows[0].GetComponent<RectTransform>().sizeDelta.x;
+
+        foreach(GameObject window in pickupWindows)
+        {
+            RectTransform rect = window.GetComponent<RectTransform>();
+            rect.anchoredPosition = new Vector2(-size/2  * (pickupWindows.Count-1), pickupUIYPos);
+
+            Vector2 addedPos = new Vector2();
+            addedPos.x = pickupWindows.IndexOf(window) * size;
+            rect.anchoredPosition = rect.anchoredPosition + addedPos;
+        }
+    }
+
+    Sprite GetSpriteFromPickupType(Pickup.PickupType type)
+    {
+        switch (type)
+        {
+            case Pickup.PickupType.instakill:
+                {
+                    return instakillImage;
+                }
+            case Pickup.PickupType.doublePoints:
+                {
+                    return doublePointsImage;
+                }
+            default:
+                {
+                    Debug.LogWarning("No image associated with pickupType. (Function: GetImageFromPickupType)");
+                    return null;
+                }
         }
     }
 }
