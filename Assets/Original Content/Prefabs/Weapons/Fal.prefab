@@ -102,7 +102,7 @@ MonoBehaviour:
   weaponRange: 100
   weaponDamage: 100
   headshotMultiplier: 8
-  weaponType: 0
+  weaponType: 1
   ammoCost: 1
   hitsPerShot: 1
   shotDelay: 0.1
@@ -141,7 +141,7 @@ Animator:
   m_GameObject: {fileID: 7737273380266126563}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a22e42f65b78c3e4fb8b509c1f9e7548, type: 2}
+  m_Controller: {fileID: 9100000, guid: 80dd0b9f419eb1844b60c37e9e6c9289, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

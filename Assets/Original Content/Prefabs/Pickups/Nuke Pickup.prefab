@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1058464276047029449}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AN602
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1573341067849707081}
   - component: {fileID: 2206326147779097845}
   - component: {fileID: 2206326147779097844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Nuke Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2286794115568434523}
   - component: {fileID: 615812224335713736}
   - component: {fileID: 8478474578684687540}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 8377354819084022081}
   - component: {fileID: 2333235627870910803}
   - component: {fileID: 222192128282735530}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torus01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 2581013272108734253}
   - component: {fileID: 3842511761076361736}
   - component: {fileID: 3680796650841721360}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ChamferBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

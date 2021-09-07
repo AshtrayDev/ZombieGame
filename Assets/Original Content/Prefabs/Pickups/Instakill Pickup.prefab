@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6562634486264532280}
   - component: {fileID: 1898349427874630922}
   - component: {fileID: 7696914907786828057}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 12140_Skull_v3_jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7730288413690853150}
   - component: {fileID: 178462674375028289}
   - component: {fileID: 8304003344083602473}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 12140_Skull_v3_teeth_lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 5884982318876063128}
   - component: {fileID: 6548366425193426724}
   - component: {fileID: 6548366425193426725}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Instakill Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4255052630694737021}
   - component: {fileID: 1738664215931634286}
   - component: {fileID: 3742247071578138506}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 12140_Skull_v3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 4075725852205071017}
   - component: {fileID: 5070950689911081709}
   - component: {fileID: 2794976029974196896}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 12140_Skull_v3_teeth
   m_TagString: Untagged
   m_Icon: {fileID: 0}

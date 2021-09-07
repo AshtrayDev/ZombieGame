@@ -2212,11 +2212,11 @@ MonoBehaviour:
   weaponRange: 100
   weaponDamage: 500
   headshotMultiplier: 1
-  weaponType: 1
+  weaponType: 0
   ammoCost: 1
   hitsPerShot: 1
-  shotDelay: 0.15
-  crosshairOffset: 47
+  shotDelay: 0.25
+  crosshairOffset: 111
   maxAmmoInClip: 20
   maxAmmo: 200
   isReloading: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3418887195036029000}
   - component: {fileID: 2610261935998978804}
   - component: {fileID: 2610261935998978805}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Carpenter Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 3076433891821918087}
   - component: {fileID: 4391968730234090995}
   - component: {fileID: 1547160622861532009}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8142997014976588381}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ATORA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 5003528006501921080}
   - component: {fileID: 4363226794591946662}
   - component: {fileID: 5299406683146214265}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4168211484807736965}
   - component: {fileID: 3321936764461242572}
   - component: {fileID: 304658531471635147}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: X2 Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
