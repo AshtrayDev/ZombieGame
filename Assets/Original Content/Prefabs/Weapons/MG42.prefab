@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7372061641430813708}
-  m_LocalRotation: {x: 0.0000000018593482, y: -0.9999999, z: -0.0006316304, w: 0.0000029504313}
+  m_LocalRotation: {x: -0, y: -0.9999998, z: -0.0006282355, w: 0}
   m_LocalPosition: {x: 0.2, y: -0.3160001, z: 0.5530014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -97,18 +97,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e375444ff27f499eaa6052769ab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleFlash: {fileID: 0}
-  hitEffect: {fileID: 0}
+  muzzleFlash: {fileID: 8816138021317753118}
+  hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
   weaponRange: 100
   weaponDamage: 25
   headshotMultiplier: 2
   weaponType: 0
   ammoCost: 1
   hitsPerShot: 1
-  shotDelay: 0.5
-  crosshairOffset: 0
-  maxAmmoInClip: 30
-  maxAmmo: 300
+  shotDelay: 0.05
+  crosshairOffset: 94
+  maxAmmoInClip: 100
+  maxAmmo: 500
+  boxScale: 1
+  boxRotation: {x: 0, y: -90, z: 0}
   isReloading: 0
   isSprinting: 0
   isDrawing: 0
@@ -141,7 +143,7 @@ Animator:
   m_GameObject: {fileID: 7372061641430813708}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a22e42f65b78c3e4fb8b509c1f9e7548, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1b7103a2b0a79ed44a480669c21a8abf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -163,11 +165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8131929130705651256, guid: f0ccb71aad1763d4896f5866f28e1f4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.116999984
+      value: 0.054
       objectReference: {fileID: 0}
     - target: {fileID: 8131929130705651256, guid: f0ccb71aad1763d4896f5866f28e1f4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.86
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 8131929130705651256, guid: f0ccb71aad1763d4896f5866f28e1f4a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -210,5 +212,10 @@ PrefabInstance:
 --- !u!4 &8816138021317753119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8131929130705651256, guid: f0ccb71aad1763d4896f5866f28e1f4a, type: 3}
+  m_PrefabInstance: {fileID: 757551037562830631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8816138021317753118 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8131929130705651257, guid: f0ccb71aad1763d4896f5866f28e1f4a, type: 3}
   m_PrefabInstance: {fileID: 757551037562830631}
   m_PrefabAsset: {fileID: 0}

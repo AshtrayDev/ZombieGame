@@ -660,8 +660,11 @@ MonoBehaviour:
   ammoCost: 1
   hitsPerShot: 1
   shotDelay: 0.1
+  crosshairOffset: 0
   maxAmmoInClip: 8
   maxAmmo: 32
+  boxScale: 1
+  boxRotation: {x: 0, y: -90, z: 0}
   isReloading: 0
   isSprinting: 0
   isDrawing: 0

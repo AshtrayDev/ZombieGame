@@ -20,6 +20,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] int maxAmmoInClip = 30;
     [SerializeField] int maxAmmo = 300;
 
+    [SerializeField] float boxScale = 1;
+    [SerializeField] Vector3 boxRotation;
+
 
     int ammoInClip;
     int storedAmmo;
@@ -42,6 +45,12 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
+        if (GetComponentInParent<WeaponSwitcher>() == null)
+        {
+            Destroy(GetComponent<Animator>());
+            enabled = false;
+            return;
+        }
         playerCam = transform.transform.GetComponentInParent<Camera>();
         weaponDelay = GetComponentInParent<WeaponDelay>();
         points = FindObjectOfType<PlayerPoints>();
@@ -201,6 +210,11 @@ public class Weapon : MonoBehaviour
     public bool IsReloading()
     {
         return isReloading;
+    }
+
+    public (float, Vector3) GetBoxDetails()
+    {
+        return (boxScale, boxRotation);
     }
 
     public void FinishHolsterAnim()

@@ -223,6 +223,8 @@ MonoBehaviour:
   crosshairOffset: 0
   maxAmmoInClip: 30
   maxAmmo: 300
+  boxScale: 1
+  boxRotation: {x: 0, y: -90, z: 0}
   isReloading: 0
   isSprinting: 0
   isDrawing: 0

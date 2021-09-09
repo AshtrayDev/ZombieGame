@@ -32,6 +32,11 @@ public class WeaponZoom : MonoBehaviour
 
     private void Awake()
     {
+        if(GetComponentInParent<WeaponSwitcher>() == null)
+        {
+            enabled = false;
+            return;
+        }
         uiHandler = FindObjectOfType<UIHandler>();
         animator = GetComponent<Animator>();
         weapon = GetComponent<Weapon>();

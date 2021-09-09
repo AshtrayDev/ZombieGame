@@ -70,6 +70,12 @@ public class UIHandler : MonoBehaviour
         tooltipUI.GetComponentInChildren<TMP_Text>().text = "Hold F to Repair Barrier";
     }
 
+    public void SetToolTipTakeWeapon()
+    {
+        tooltipUI.SetActive(true);
+        tooltipUI.GetComponentInChildren<TMP_Text>().text = "Hold F to Take Weapon";
+    }
+
     //Points---------------------------------------------------------------------------
     public void SetPointsUIText(int points)
     {
