@@ -19,6 +19,7 @@ public class RandomBox : MonoBehaviour
     bool isTriggered;
     bool isOpen;
     bool isAnimating;
+    bool isDelayed;
     Coroutine boxTimer;
 
     int indexOfWeaponShown;
@@ -46,12 +47,12 @@ public class RandomBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Interact") && isOpen && trigger.IsTriggeredByPlayer() && !isAnimating)
+        if (Input.GetButtonDown("Interact") && isOpen && trigger.IsTriggeredByPlayer() && !isAnimating && !isDelayed)
         {
             TakeWeapon();
         }
 
-        if (Input.GetButtonDown("Interact") && !isOpen && trigger.IsTriggeredByPlayer() && points.IsAbleToAfford(costToOpen))
+        else if (Input.GetButtonDown("Interact") && !isOpen && !isDelayed && trigger.IsTriggeredByPlayer() && points.IsAbleToAfford(costToOpen))
         {
             OpenBox();
         }
@@ -128,18 +129,16 @@ public class RandomBox : MonoBehaviour
         float yDistanceRemaining = weaponShown.transform.position.y - endGunPos.position.y;
         float yPosPerSecond = yDistanceRemaining / animationTime;
         float yPosPerFrame = yPosPerSecond * Time.deltaTime;
-        print(weaponShown.transform.position.y - endGunPos.position.y);
-        while(weaponShown.transform.position.y - endGunPos.position.y < 0)
+
+        float elapsedTime = 0;
+        Vector3 startingPos = weaponShown.transform.position;
+        while (elapsedTime < animationTime)
         {
-            print("test");
-            Vector3 newPos = weaponShown.transform.position;
-            
-            Vector3 addedPos = new Vector3();
-            addedPos.y = -yPosPerFrame;
-            newPos = addedPos + newPos;
-            weaponShown.transform.position = newPos;
-            yield return new WaitForSeconds(Time.deltaTime);
+            weaponShown.transform.position = Vector3.Lerp(startingPos, endGunPos.transform.position, (elapsedTime / animationTime));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
+        weaponShown.transform.position = endGunPos.transform.position;
         isAnimating = false;
         TriggerEnter();
     }
@@ -149,7 +148,6 @@ public class RandomBox : MonoBehaviour
 
         while (isAnimating)
         {
-            float boxYRotation = transform.rotation.y;
 
             GameObject oldWeapon = weaponShown;
             indexOfWeaponShown = Random.Range(0, weapons.Count - 1);
@@ -178,6 +176,7 @@ public class RandomBox : MonoBehaviour
 
     void TakeWeapon()
     {
+        isDelayed = true;
         StopCoroutine(boxTimer);
         ui.SetActiveTooltipUI(false);
 
@@ -198,6 +197,7 @@ public class RandomBox : MonoBehaviour
         Destroy(weaponShown);
         yield return new WaitForSeconds(2f);
         isOpen = false;
+        isDelayed = false;
         TriggerEnter();
     }
 }
