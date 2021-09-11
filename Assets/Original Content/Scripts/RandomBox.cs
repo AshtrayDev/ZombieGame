@@ -38,7 +38,7 @@ public class RandomBox : MonoBehaviour
     private void Start()
     {
         switcher = FindObjectOfType<WeaponSwitcher>();
-        audioSource = FindObjectOfType<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         ui = FindObjectOfType<UIHandler>();
         points = FindObjectOfType<PlayerPoints>();
         animationTime = audioSource.clip.length + animationStopOffset;
@@ -62,7 +62,7 @@ public class RandomBox : MonoBehaviour
     {
         if (trigger.IsTriggeredByPlayer() && isOpen &&!isAnimating)
         {
-            ui.SetToolTipTakeWeapon();
+            ui.SetToolTipCustom("Hold F to Take Weapon");
         }
 
         if (trigger.IsTriggeredByPlayer() && !isOpen)

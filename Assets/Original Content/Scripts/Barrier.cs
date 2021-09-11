@@ -7,12 +7,15 @@ public class Barrier : MonoBehaviour
     List<Animator> activePlanks = new List<Animator>();
     List<Animator> inactivePlanks = new List<Animator>();
     bool isTriggered = false;
-    bool repairDelay = false;
+    bool isRepairDelayed = false;
     bool isBarrierClear = false;
+
+    LevelSettings settings;
 
     // Start is called before the first frame update
     void Start()
     {
+        settings = FindObjectOfType<LevelSettings>();
         foreach(Transform transform in transform)
         {
             if (transform.GetComponent<Animator>())
@@ -24,7 +27,7 @@ public class Barrier : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Interact") && !repairDelay && isTriggered)
+        if (Input.GetButton("Interact") && !isRepairDelayed && isTriggered)
         {
             RepairBarrier();
         }
@@ -34,7 +37,7 @@ public class Barrier : MonoBehaviour
     {
         if (other.GetComponentInParent<PlayerHealth>())
         {
-            FindObjectOfType<UIHandler>().SetToolTipRepairBarrier();
+            FindObjectOfType<UIHandler>().SetToolTipCustom("Hold F to Repair Barrier");
             isTriggered = true;
         }
 
@@ -75,7 +78,7 @@ public class Barrier : MonoBehaviour
             activePlanks.Add(inactivePlanks[inactivePlanks.Count - 1]);
             inactivePlanks.Remove(inactivePlanks[inactivePlanks.Count - 1]);
 
-            repairDelay = true;
+            isRepairDelayed = true;
         }
     }
 
@@ -100,7 +103,7 @@ public class Barrier : MonoBehaviour
 
     public void RepairBarrierAnim()
     {
-        repairDelay = false;
+        StartCoroutine(RepairDelay());
         isBarrierClear = false;
     }
 
@@ -117,5 +120,12 @@ public class Barrier : MonoBehaviour
             activePlanks.Add(plank);
         }
         inactivePlanks.Clear();
+    }
+
+    IEnumerator RepairDelay()
+    {
+        isRepairDelayed = true;
+        yield return new WaitForSeconds(settings.barrierRepairDelay);
+        isRepairDelayed = false;
     }
 }

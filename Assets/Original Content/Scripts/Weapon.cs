@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
     [Range(0, 400)] public float crosshairOffset;
     [SerializeField] int maxAmmoInClip = 30;
     [SerializeField] int maxAmmo = 300;
+    [SerializeField] Weapon upgradedVersion;
 
     [SerializeField] float boxScale = 1;
     [SerializeField] Vector3 boxRotation;
@@ -205,6 +206,11 @@ public class Weapon : MonoBehaviour
     public float GetShotDelay()
     {
         return shotDelay;
+    }
+
+    public Weapon GetUpgradedVersion()
+    {
+        return upgradedVersion;
     }
 
     public bool IsReloading()

@@ -109,6 +109,7 @@ MonoBehaviour:
   crosshairOffset: 94
   maxAmmoInClip: 100
   maxAmmo: 500
+  upgradedVersion: {fileID: 7372061641430813697, guid: ac12b63c46fb6f947bb0bef47f8b20ec, type: 3}
   boxScale: 1
   boxRotation: {x: 0, y: -90, z: 0}
   isReloading: 0

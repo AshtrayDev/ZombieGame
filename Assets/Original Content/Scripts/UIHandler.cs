@@ -64,16 +64,10 @@ public class UIHandler : MonoBehaviour
         tooltipUI.GetComponentInChildren<TMP_Text>().text = text + "[Cost: " + cost + "]";
     }
 
-    public void SetToolTipRepairBarrier()
+    public void SetToolTipCustom(string text)
     {
         tooltipUI.SetActive(true);
-        tooltipUI.GetComponentInChildren<TMP_Text>().text = "Hold F to Repair Barrier";
-    }
-
-    public void SetToolTipTakeWeapon()
-    {
-        tooltipUI.SetActive(true);
-        tooltipUI.GetComponentInChildren<TMP_Text>().text = "Hold F to Take Weapon";
+        tooltipUI.GetComponentInChildren<TMP_Text>().text = text;
     }
 
     //Points---------------------------------------------------------------------------

@@ -19,6 +19,9 @@ public class LevelSettings : MonoBehaviour
     public int carpenterPoints = 400;
     public int nukePoints = 400;
 
+    [Header("Misc")]
+    public float barrierRepairDelay = 0.5f;
+
     private void Start()
     {
         if(pickupsTransform == null)
