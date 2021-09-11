@@ -7923,7 +7923,7 @@ PrefabInstance:
       objectReference: {fileID: 26477042}
     - target: {fileID: 6979414201234433963, guid: a05349840d2f7124e9b326602ea9065a, type: 3}
       propertyPath: chanceOfSpawning
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7619748608110331689, guid: a05349840d2f7124e9b326602ea9065a, type: 3}
       propertyPath: m_Name
