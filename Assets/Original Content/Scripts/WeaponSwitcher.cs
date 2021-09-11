@@ -15,9 +15,11 @@ public class WeaponSwitcher : MonoBehaviour
 
     List<Weapon> weapons = new List<Weapon>();
     Weapon currentWeapon;
+    Crosshair crosshair;
 
     void Start()
     {
+        crosshair = FindObjectOfType<Crosshair>();
         SetWeaponActive();
     }
 
@@ -44,7 +46,7 @@ public class WeaponSwitcher : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 currentWeapon = weapon;
-                FindObjectOfType<Crosshair>().ChangeCurrentWeapon(weapon);
+                crosshair.ChangeCurrentWeapon(weapon);
             }
 
             else
@@ -58,6 +60,11 @@ public class WeaponSwitcher : MonoBehaviour
 
     void Update()
     {
+        if (!currentWeapon.gameObject.activeSelf)
+        {
+            print("Bug fixed");
+            SetWeaponActive();
+        }
         if (isAllowedToSwitch)
         {
             if (Input.GetAxis("SwitchWeapon") < 0 && currentWeaponID < GetAmountOfWeapons() - 1)
