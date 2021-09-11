@@ -60,6 +60,10 @@ public class WeaponZoom : MonoBehaviour
 
     void Update()
     {
+        if(crosshair == null)
+        {
+            FindObjectOfType<Crosshair>();
+        }
         if (Input.GetButton("Fire2") && !weapon.IsReloading() && !weapon.isSprinting)
         {
             Zoom();

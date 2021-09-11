@@ -31,17 +31,17 @@ public class RandomBox : MonoBehaviour
 
     PlayerPoints points;
     UIHandler ui;
-    AudioSource audioSource;
     WeaponSwitcher switcher;
+    Audio audio;
 
 
     private void Start()
     {
         switcher = FindObjectOfType<WeaponSwitcher>();
-        audioSource = GetComponent<AudioSource>();
+        audio = FindObjectOfType<Audio>();
         ui = FindObjectOfType<UIHandler>();
         points = FindObjectOfType<PlayerPoints>();
-        animationTime = audioSource.clip.length + animationStopOffset;
+        animationTime = boxJingle.length + animationStopOffset;
         
     }
     // Update is called once per frame
@@ -114,7 +114,7 @@ public class RandomBox : MonoBehaviour
 
     void PlayMusic()
     {
-        audioSource.Play();
+         audio.PlaySound(boxJingle);
     }
 
     void ChangeAndMoveGunUp()

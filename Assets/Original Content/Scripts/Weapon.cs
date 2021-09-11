@@ -249,11 +249,20 @@ public class Weapon : MonoBehaviour
         }
 
         RefreshAmmoUI();
+        animator.speed = 1;
         isReloading = false;
     }
 
     public void OnWeaponReset()
     {
         isReloading = false;
+        animator.speed = 1;
+    }
+
+    public void MaxAmmo()
+    {
+        ammoInClip = maxAmmoInClip;
+        storedAmmo = maxAmmo;
+        RefreshAmmoUI();
     }
 }

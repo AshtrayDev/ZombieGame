@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19637aee4194807439aebad5c293f1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextRound: 1
+  nextRoundSound: {fileID: 8300000, guid: 69222cf6d314a1945ab1818dd9f32310, type: 3}
 --- !u!114 &9131620186651542488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2308669026512271613}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cf12e26e4601814493baa9ef6365fac, type: 3}
   m_Name: 
@@ -165,8 +165,9 @@ MonoBehaviour:
   - {fileID: 2510908743135563600, guid: f3a098f8ed61f624090f43aeb080806b, type: 3}
   - {fileID: 2206326147779097843, guid: 624cf588cf25d3d40b9a490da03ff6f9, type: 3}
   - {fileID: 2610261935998978802, guid: fa459e0def0a59748bb5af6838dc08bd, type: 3}
+  - {fileID: 2510908743135563600, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
   pickupYOffset: 2
-  chanceOfSpawning: 20
+  chanceOfSpawning: 5
   startPoints: 500
   pointsPerHit: 10
   bodyshotKillPoints: 60
@@ -174,6 +175,8 @@ MonoBehaviour:
   knifeKillPoints: 130
   carpenterPoints: 400
   nukePoints: 400
+  barrierRepairDelay: 0.5
+  nextRoundDelay: 21
 --- !u!1 &7619748608110331689
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,13 +38,13 @@ public class ZombieSpawner : MonoBehaviour
             SpawnZombie();
         }
 
-        else if (zombiesActive == 0 && zombiesLeftToSpawn == 0)
+        else if (zombiesActive == 0 && zombiesLeftToSpawn == 0 && roundActive)
         {
             EndRound();
         }
     }
 
-    void StartRound()
+    public void StartRound()
     {
         roundActive = true;
         (roundNum, zombieHP, zombiesLeftToSpawn) = roundSystem.GetNewRoundStats();
@@ -55,7 +55,6 @@ public class ZombieSpawner : MonoBehaviour
     {
         roundActive = false;
         roundSystem.RoundEnd();
-        StartRound();
     }
 
     void SpawnZombie()

@@ -9,7 +9,9 @@ public class RoundSystem : MonoBehaviour
     int zombieAmount;
 
 
-    [SerializeField] bool nextRound;
+    bool nextRound;
+
+    [SerializeField] AudioClip nextRoundSound;
     // Start is called before the first frame update
     void Awake()
     {
@@ -50,8 +52,17 @@ public class RoundSystem : MonoBehaviour
 
     public void RoundEnd()
     {
+        StartCoroutine(NextRoundDelay());
+    }
+
+    IEnumerator NextRoundDelay()
+    {
+        FindObjectOfType<Audio>().PlaySound(nextRoundSound);
+        float delay = nextRoundSound.length;
+        yield return new WaitForSeconds(delay-8);
         roundNum++;
         CalculateZombieStats();
+        GetComponent<ZombieSpawner>().StartRound();
     }
 
 

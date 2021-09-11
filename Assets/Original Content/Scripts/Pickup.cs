@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour
 {
     public enum PickupType
     {
-        instakill, doublePoints, carpenter, nuke
+        instakill, doublePoints, carpenter, nuke, maxAmmo
     }
 
 
@@ -106,6 +106,16 @@ public class Pickup : MonoBehaviour
             FindObjectOfType<PlayerPoints>().AddPoints(settings.carpenterPoints);
             return;
         }
+
+        if (pickupType == PickupType.maxAmmo)
+        {
+            foreach (Weapon weapon in FindObjectsOfType<Weapon>())
+            {
+                weapon.MaxAmmo();
+            }
+            return;
+        }
+
 
         //Timer based pickups
         perk.AddPickup(pickupType, timer);

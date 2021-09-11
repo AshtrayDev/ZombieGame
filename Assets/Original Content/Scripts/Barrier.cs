@@ -64,7 +64,7 @@ public class Barrier : MonoBehaviour
 
     public void AttackBarrier()
     {
-        if (!isBarrierClear)
+        if (activePlanks.Count != 0)
         {
             DestroyBarrier(activePlanks[activePlanks.Count-1]);
         }

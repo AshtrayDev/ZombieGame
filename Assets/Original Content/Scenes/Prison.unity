@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 0
+  m_FogColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0.06
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -6376,6 +6376,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &2601580036881746890
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2510908743135563600, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_Name
+      value: Max Ammo Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 37.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4917
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -58.542
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995837813002655210, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84e53e4ef9cd26648a837c83e0a2f38e, type: 3}
 --- !u!114 &2619889873463680633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7921,10 +7978,6 @@ PrefabInstance:
       propertyPath: pickupsTransform
       value: 
       objectReference: {fileID: 26477042}
-    - target: {fileID: 6979414201234433963, guid: a05349840d2f7124e9b326602ea9065a, type: 3}
-      propertyPath: chanceOfSpawning
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7619748608110331689, guid: a05349840d2f7124e9b326602ea9065a, type: 3}
       propertyPath: m_Name
       value: GAME
@@ -7933,10 +7986,6 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1113361484}
-    - target: {fileID: 9131620186651542488, guid: a05349840d2f7124e9b326602ea9065a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a05349840d2f7124e9b326602ea9065a, type: 3}
 --- !u!223 &7029837487154167644
@@ -8230,6 +8279,10 @@ PrefabInstance:
       propertyPath: weapons.Array.data[8]
       value: 
       objectReference: {fileID: 7944122969259152377, guid: 0774ce71e5bef7e4e9f1c8e35487b4ab, type: 3}
+    - target: {fileID: 8409184937346083493, guid: 52541e1e460df9a43a71ab50bb2612a6, type: 3}
+      propertyPath: boxJingle
+      value: 
+      objectReference: {fileID: 8300000, guid: f130c57fab61a064092b32b3514eea6a, type: 3}
     - target: {fileID: 8409184937346083494, guid: 52541e1e460df9a43a71ab50bb2612a6, type: 3}
       propertyPath: m_audioClip
       value: 
