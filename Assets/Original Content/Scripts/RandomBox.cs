@@ -11,6 +11,7 @@ public class RandomBox : MonoBehaviour
     [SerializeField] Transform startGunPos;
     [SerializeField] Transform endGunPos;
     [SerializeField] int costToOpen = 950;
+    [SerializeField] float boxVolume = 50f;
     [SerializeField] float weaponChangeDelay = 0.2f;
     [SerializeField] float animationStopOffset = -1f;
     [SerializeField] float timeBoxOpen = 10f;
@@ -114,7 +115,7 @@ public class RandomBox : MonoBehaviour
 
     void PlayMusic()
     {
-         audio.PlaySound(boxJingle);
+         audio.PlaySound(boxJingle, boxVolume);
     }
 
     void ChangeAndMoveGunUp()

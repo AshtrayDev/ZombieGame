@@ -7,10 +7,13 @@ public class PerkMachine : MonoBehaviour
 
     [SerializeField] PerkList perk;
     [SerializeField] int cost;
+    [SerializeField] bool needsPower = true;
+
 
     GameObject player;
 
     bool isTriggered;
+    bool isPowered;
 
     UIHandler ui;
 
@@ -26,6 +29,8 @@ public class PerkMachine : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") && isTriggered)
         {
+            if (needsPower && !isPowered)  {return;}
+
             if (player.GetComponent<PlayerPoints>().IsAbleToAfford(cost))
             {
                 BuyPerk();
@@ -61,5 +66,12 @@ public class PerkMachine : MonoBehaviour
     {
         player.GetComponent<PlayerPerk>().AddPerk(perk);
         player.GetComponent<PlayerPoints>().RemovePoints(cost);
+    }
+
+    public void PowerOn()
+    {
+        isPowered = true;
+        Material material = GetComponent<MeshRenderer>().material;
+        material.EnableKeyword("_EMISSION");
     }
 }

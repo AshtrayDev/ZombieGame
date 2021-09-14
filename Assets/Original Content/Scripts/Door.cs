@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+
+    [SerializeField] bool isLocked = false;
     [SerializeField] int pointCost;
     [SerializeField] Vector3 size = new Vector3 (1,1,1);
 
@@ -38,16 +40,22 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isTriggered = true;
-        player = other.gameObject;
-        uiHandler.SetTooltipBuy("Press & Hold F to Open Door", pointCost);
+        if (other.GetComponent<PlayerHealth>() && !isLocked)
+        {
+            isTriggered = true;
+            player = other.gameObject;
+            uiHandler.SetTooltipBuy("Press & Hold F to Open Door", pointCost);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        isTriggered = false;
-        player = null;
-        uiHandler.SetActiveTooltipUI(false);
+        if (other.GetComponent<PlayerHealth>())
+        {
+            isTriggered = false;
+            player = null;
+            uiHandler.SetActiveTooltipUI(false);
+        }
     }
 
     void OpenDoor()
@@ -63,6 +71,10 @@ public class Door : MonoBehaviour
             }
             Destroy(gameObject);
         }
+    }
 
+    public void PowerOn()
+    {
+        Destroy(gameObject);
     }
 }

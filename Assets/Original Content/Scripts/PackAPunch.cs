@@ -6,6 +6,7 @@ public class PackAPunch : MonoBehaviour
 {
     [SerializeField] Trigger trigger;
     [SerializeField] int cost;
+    [SerializeField] float soundVolume = 50f;
     [SerializeField] int delay;
     [SerializeField] AudioClip song;
     [SerializeField] AudioClip ding;
@@ -15,6 +16,7 @@ public class PackAPunch : MonoBehaviour
     bool isTriggeredByPlayer;
     bool isWeaponReady;
     bool isDelayed;
+    bool isPowered;
     Weapon savedWeapon;
 
     UIHandler ui;
@@ -53,7 +55,7 @@ public class PackAPunch : MonoBehaviour
 
     public void TriggerEnter()
     {
-        if (trigger.IsTriggeredByPlayer() && !isDelayed)
+        if (trigger.IsTriggeredByPlayer() && !isDelayed && isPowered)
         {
             isTriggeredByPlayer = true;
 
@@ -107,15 +109,15 @@ public class PackAPunch : MonoBehaviour
 
     void SoundFX()
     {
-        audio.PlaySound(song);
-        audio.PlaySound(whirl);
+        audio.PlaySound(song, soundVolume);
+        audio.PlaySound(whirl, soundVolume);
         StartCoroutine(PlayDing());
     }
 
     IEnumerator PlayDing()
     {
         yield return new WaitForSeconds(whirl.length-0.5f);
-        audio.PlaySound(ding);
+        audio.PlaySound(ding, soundVolume);
         WeaponReady();
     }
 
@@ -138,5 +140,12 @@ public class PackAPunch : MonoBehaviour
         isDelayed = true;
         yield return new WaitForSeconds(delay);
         isDelayed = false;
+    }
+
+    public void PowerOn()
+    {
+        isPowered = true;
+        Material material = GetComponent<MeshRenderer>().material;
+        material.EnableKeyword("_EMISSION");
     }
 }

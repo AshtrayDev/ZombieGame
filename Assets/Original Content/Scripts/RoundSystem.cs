@@ -57,7 +57,7 @@ public class RoundSystem : MonoBehaviour
 
     IEnumerator NextRoundDelay()
     {
-        FindObjectOfType<Audio>().PlaySound(nextRoundSound);
+        FindObjectOfType<Audio>().PlaySound(nextRoundSound, 0);
         float delay = nextRoundSound.length;
         yield return new WaitForSeconds(delay-8);
         roundNum++;
