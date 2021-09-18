@@ -29,6 +29,8 @@ public class WeaponZoom : MonoBehaviour
     Camera playerCam;
     Crosshair crosshair;
 
+    bool isShotgun = false;
+
 
     private void Awake()
     {
@@ -48,6 +50,11 @@ public class WeaponZoom : MonoBehaviour
 
     void Start()
     {
+        if(weapon.GetWeaponType() is Weapon.WeaponType.shotgun)
+        {
+            isShotgun = true;
+        }
+
         originalPos = transform.localPosition;
         originalRotation = transform.localEulerAngles;
         currentSens = originalSens;
@@ -67,7 +74,7 @@ public class WeaponZoom : MonoBehaviour
         if (Input.GetButton("Fire2") && !weapon.IsReloading() && !weapon.isSprinting)
         {
             Zoom();
-            crosshair.ADS();
+            crosshair.ADS(isShotgun);
             animator.SetBool("ADS", true);
         }
 
@@ -91,14 +98,6 @@ public class WeaponZoom : MonoBehaviour
 
         if(transform.localPosition != zoomPos && transform.localRotation != Quaternion.Euler(zoomRotation))
         {
-            //Position
-            //Vector3 posDiff = zoomPos - transform.localPosition;
-            //transform.localPosition = transform.localPosition + (posDiff * Time.deltaTime * zoomSpeed);
-
-            //Rotation
-            //Vector3 rotation = transform.localEulerAngles;
-            //Vector3 rotationDiff = zoomRotation - rotation;
-            //transform.localRotation = Quaternion.Euler(rotation + (rotationDiff * Time.deltaTime * zoomSpeed));
 
             //FOV
             float FOVdiff = zoomFOV - playerCam.fieldOfView;
@@ -129,15 +128,6 @@ public class WeaponZoom : MonoBehaviour
 
         if (transform.localPosition != originalPos && transform.localRotation != Quaternion.Euler(originalRotation))
         {
-            //Position
-            //Vector3 posDiff = originalPos - transform.localPosition;
-            //transform.localPosition = transform.localPosition + (posDiff * Time.deltaTime * zoomSpeed);
-
-            //Rotation
-            //Vector3 rotation = transform.localEulerAngles;
-            //Vector3 rotationDiff = originalRotation - rotation;
-            //transform.localRotation = Quaternion.Euler(rotation + (rotationDiff * Time.deltaTime * zoomSpeed));
-
             //FOV
             float FOVdiff = originalFOV - playerCam.fieldOfView;
             playerCam.fieldOfView = playerCam.fieldOfView + (FOVdiff * Time.deltaTime * zoomSpeed);

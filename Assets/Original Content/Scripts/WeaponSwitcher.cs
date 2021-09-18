@@ -17,9 +17,13 @@ public class WeaponSwitcher : MonoBehaviour
     Weapon currentWeapon;
     Crosshair crosshair;
 
-    void Start()
+    private void Awake()
     {
         crosshair = FindObjectOfType<Crosshair>();
+    }
+
+    void Start()
+    {
         SetWeaponActive();
     }
 

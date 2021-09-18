@@ -129,10 +129,18 @@ public class Crosshair : MonoBehaviour
         return angle;
     }
 
-    public void ADS()
+    public void ADS(bool isShotgun)
     {
         isADS = true;
-        spread = 0 + offset/2;
+        if (isShotgun)
+        {
+            spread = 0 + offset / 2;
+        }
+
+        else
+        {
+            spread = 0;
+        }
     }
 
     public void ReleaseADS()

@@ -12,10 +12,12 @@ public class PlayerHealth : MonoBehaviour
     bool regen;
 
     DeathHandler deathHandler;
+    UIHandler ui;
 
     // Start is called before the first frame update
     void Start()
     {
+        ui = FindObjectOfType<UIHandler>();
         deathHandler = GetComponent<DeathHandler>();
     }
 
@@ -35,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         currentHealth = currentHealth + addedHealth;
+        ui.UpdateTakeDamagePanel(currentHealth, maxHealth);
         CheckHealth();
     }
 
@@ -85,6 +88,11 @@ public class PlayerHealth : MonoBehaviour
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public void OnExplosiveHit()
+    {
+        AddHealth(-50);
     }
 
 }

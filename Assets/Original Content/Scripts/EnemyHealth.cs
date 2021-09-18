@@ -92,6 +92,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    public void OnExplosiveHit(float damage)
+    {
+        TakeDamage(damage, DamageType.body);
+    }
+
     public bool IsDead()
     {
         return isDead;

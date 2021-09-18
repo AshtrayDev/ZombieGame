@@ -5,9 +5,11 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class Weapon : MonoBehaviour
 {
-    enum WeaponType {auto, semiauto, shotgun}
+    public enum WeaponType {auto, semiauto, shotgun}
 
+    [SerializeField] GameObject explosiveRadiusPrefab;
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] float explosiveRadius = 0f;
     [SerializeField] GameObject hitEffect;
     [SerializeField] float weaponRange = 100f;
     [SerializeField] float weaponDamage = 25f;
@@ -149,9 +151,9 @@ public class Weapon : MonoBehaviour
 
             InstantiateHitEffect(hit);
             ProcessDamage(hit);
+            ExplosiveDamage(hit.point);
         }
     }
-
     RaycastHit ProcessRaycast()
     {
         RaycastHit hit;
@@ -182,6 +184,14 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    void ExplosiveDamage(Vector3 pos)
+    {
+        if (explosiveRadiusPrefab == null) { return; }
+        GameObject explosive = Instantiate(explosiveRadiusPrefab, pos, Quaternion.identity);
+        explosive.GetComponent<AOEDamage>().weaponDamage = weaponDamage;
+        explosive.GetComponent<SphereCollider>().radius = explosiveRadius;
+    }
+
     void MuzzleFlash()
     {
         muzzleFlash.Play();
@@ -208,9 +218,19 @@ public class Weapon : MonoBehaviour
         return shotDelay;
     }
 
+    public float GetDamage()
+    {
+        return weaponDamage;
+    }
+
     public Weapon GetUpgradedVersion()
     {
         return upgradedVersion;
+    }
+
+    public WeaponType GetWeaponType()
+    {
+        return weaponType;
     }
 
     public bool IsReloading()

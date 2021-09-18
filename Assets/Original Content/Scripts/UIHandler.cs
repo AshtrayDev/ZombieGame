@@ -34,6 +34,9 @@ public class UIHandler : MonoBehaviour
     [SerializeField] GameObject pickupUIPrefab;
     [SerializeField] float pickupUIYPos;
 
+    [Header("Other")]
+    [SerializeField] GameObject takeDamageUIPanel;
+
     Image[] perkSprites;
     List<GameObject> pickupWindows = new List<GameObject>();
     List<Pickup.PickupType> types = new List<Pickup.PickupType>();
@@ -266,5 +269,14 @@ public class UIHandler : MonoBehaviour
                     return null;
                 }
         }
+    }
+
+    //TakeDamage
+    public void UpdateTakeDamagePanel(float health, float maxHealth)
+    {
+        float healthPercentage = health / maxHealth;
+        Color currentColor = takeDamageUIPanel.GetComponent<Image>().color;
+        currentColor.a = 1 - healthPercentage;
+        takeDamageUIPanel.GetComponent<Image>().color = currentColor;
     }
 }
