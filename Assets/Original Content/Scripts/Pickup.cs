@@ -38,6 +38,11 @@ public class Pickup : MonoBehaviour
         ui = FindObjectOfType<UIHandler>();
     }
 
+    private void Start()
+    {
+        Destroy(gameObject, settings.pickupLifeTime);
+    }
+
     // Update is called once per frame
     void Update()
     {

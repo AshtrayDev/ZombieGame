@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 1
-  timer: 5
+  timer: 15
   rotateSpeed: 40
   hoverSpeed: 0.05
   hoverAmount: 0.1

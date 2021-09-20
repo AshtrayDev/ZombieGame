@@ -22,6 +22,7 @@ public class LevelSettings : MonoBehaviour
     [Header("Misc")]
     public float barrierRepairDelay = 0.5f;
     public float nextRoundDelay = 21f;
+    public float pickupLifeTime = 30f;
 
     private void Start()
     {
