@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4695680305562217228}
   - component: {fileID: 4695680305562217231}
   - component: {fileID: 6405097774288591649}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wall Buy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,3 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9999db44cd142f7449e1acc315b6544d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerBoxSize: {x: 2, y: 2, z: 2}
+  weaponForSale: {fileID: 3533289534378780421, guid: 5e88dc37348e1bb4b93bedb3ffb0be95, type: 3}
+  weaponCost: 0

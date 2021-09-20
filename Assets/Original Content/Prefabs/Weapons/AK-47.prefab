@@ -87,19 +87,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e375444ff27f499eaa6052769ab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosiveRadiusPrefab: {fileID: 0}
   muzzleFlash: {fileID: 8412249013141053700}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
-  weaponRange: 500
-  weaponDamage: 25
-  headshotMultiplier: 2
   weaponType: 0
+  explosiveRadius: 0
+  weaponRange: 1000
+  weaponDamage: 100
+  headshotMultiplier: 2.7
   ammoCost: 1
   hitsPerShot: 1
   shotDelay: 0.1
   crosshairOffset: 30
-  maxAmmoInClip: 30
-  maxAmmo: 300
+  maxAmmoInClip: 32
+  maxAmmo: 192
   upgradedVersion: {fileID: 3533289534378780421, guid: be3dc7e9c4a35da429759b2d1efc1d4b, type: 3}
+  shootSound: {fileID: 8300000, guid: 7a9e78e171696f247b58023e988a4eba, type: 3}
+  reloadSound: {fileID: 8300000, guid: 14365df6d5af90343a63fac86e1df64a, type: 3}
+  buySound: {fileID: 8300000, guid: 5961b62110845054b89eaeb582acfc3e, type: 3}
+  usePAPSound: 0
+  addedVolume: -0.1
+  papSoundPitch: 0
   boxScale: 1
   boxRotation: {x: 0, y: -90, z: 0}
   isReloading: 0

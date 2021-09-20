@@ -83,6 +83,7 @@ public class RandomBox : MonoBehaviour
 
     void OpenBox()
     {
+        points.RemovePoints(costToOpen);
         isOpen = true;
         print("Opening box");
         StopPlayerInteract();

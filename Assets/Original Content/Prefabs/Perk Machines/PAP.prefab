@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: {fileID: 2758421195655762170}
   cost: 5000
+  soundVolume: 0
   delay: 3
   song: {fileID: 8300000, guid: 306723c3f19763f4c9584bb823cd5cff, type: 3}
   ding: {fileID: 8300000, guid: 0a1432db381d3e84d88ae96d84f5682e, type: 3}
@@ -126,7 +127,7 @@ GameObject:
   - component: {fileID: 2758421195655762168}
   - component: {fileID: 2758421195655762170}
   - component: {fileID: 2758421195655762171}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TriggerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

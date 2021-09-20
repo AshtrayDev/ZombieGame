@@ -158,10 +158,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public float frameCounter = 20;
 		Quaternion originalRotation;
 
+		WeaponSwitcher switcher;
+
 
 		void Start()
 		{
-
+			switcher = FindObjectOfType<WeaponSwitcher>();
 			// In case these haven't been set up, we look for them on the appropriate places.
 			if (rb == null)
 				rb = GetComponent<Rigidbody>();
@@ -290,10 +292,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Sprint()
         {
+
             if (Input.GetButton("Dash") && Input.GetAxis("Vertical") > 0)
             {
-                if (sprintAmount > 0 && !FindObjectOfType<WeaponSwitcher>().GetCurrentWeapon().IsReloading())
+                if (sprintAmount > 0 && !switcher.GetCurrentWeapon().IsReloading())
                 {
+					switcher.GetCurrentWeapon().GetComponent<Animator>().speed = 1;
                     dash = true;
                     currentMoveSpeed = sprintSpeed;
                     sprintAmount = sprintAmount - (Time.deltaTime * sprintConsumption);

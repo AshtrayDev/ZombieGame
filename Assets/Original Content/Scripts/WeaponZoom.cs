@@ -126,20 +126,15 @@ public class WeaponZoom : MonoBehaviour
             uiHandler.SetActiveReticleUI(false);
         }
 
-        if (transform.localPosition != originalPos && transform.localRotation != Quaternion.Euler(originalRotation))
-        {
-            //FOV
-            float FOVdiff = originalFOV - playerCam.fieldOfView;
-            playerCam.fieldOfView = playerCam.fieldOfView + (FOVdiff * Time.deltaTime * zoomSpeed);
+        //FOV
+        float FOVdiff = originalFOV - playerCam.fieldOfView;
+        playerCam.fieldOfView = playerCam.fieldOfView + (FOVdiff * Time.deltaTime * zoomSpeed);
 
-            //Sens
-            float sensDiff = originalSens - currentSens;
-            currentSens = currentSens + (sensDiff * Time.deltaTime * zoomSpeed);
-            fpsController.sensitivityX = currentSens;
-            fpsController.sensitivityY = currentSens;
-
-
-        }
+        //Sens
+        float sensDiff = originalSens - currentSens;
+        currentSens = currentSens + (sensDiff * Time.deltaTime * zoomSpeed);
+        fpsController.sensitivityX = currentSens;
+        fpsController.sensitivityY = currentSens;
     }
 
     public void OnWeaponReset()

@@ -8,6 +8,7 @@ public class PerkMachine : MonoBehaviour
     [SerializeField] PerkList perk;
     [SerializeField] int cost;
     [SerializeField] bool needsPower = true;
+    [SerializeField] float musicVolume = 1f;
 
 
     GameObject player;
@@ -22,6 +23,10 @@ public class PerkMachine : MonoBehaviour
     {
         gameObject.AddComponent<BoxCollider>();
         ui = FindObjectOfType<UIHandler>();
+        if (!needsPower)
+        {
+            PowerOn();
+        }
     }
 
     // Update is called once per frame
@@ -45,8 +50,17 @@ public class PerkMachine : MonoBehaviour
         {
             if (!other.GetComponent<PlayerPerk>().HasPerk(perk))
             {
+                if (isPowered)
+                {
+                    FindObjectOfType<UIHandler>().SetTooltipBuy("Hold F to buy " + perk.ToString(), cost);
+                }
+
+                else
+                {
+                    FindObjectOfType<UIHandler>().SetToolTipCustom("Needs Power!");
+
+                }
                 player = other.gameObject;
-                FindObjectOfType<UIHandler>().SetTooltipBuy("Hold F to buy " + perk.ToString(), cost);
                 isTriggered = true;
             }
         }
@@ -71,6 +85,7 @@ public class PerkMachine : MonoBehaviour
     public void PowerOn()
     {
         isPowered = true;
+        GetComponent<AudioSource>().volume = musicVolume;
         Material material = GetComponent<MeshRenderer>().material;
         material.EnableKeyword("_EMISSION");
     }

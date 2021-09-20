@@ -64,7 +64,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     void Update()
     {
-        if (!currentWeapon.gameObject.activeSelf)
+        if (!currentWeapon.gameObject.activeSelf && currentWeapon != null)
         {
             print("Bug fixed");
             SetWeaponActive();

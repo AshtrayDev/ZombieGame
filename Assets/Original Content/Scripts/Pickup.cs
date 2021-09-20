@@ -16,6 +16,8 @@ public class Pickup : MonoBehaviour
     [SerializeField] float rotateSpeed = 70f;
     [SerializeField] float hoverSpeed = 0.1f;
     [SerializeField] float hoverAmount = 0.1f;
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] float addedVolume;
 
     float startYPos;
     bool isMovingUp;
@@ -23,10 +25,12 @@ public class Pickup : MonoBehaviour
     PlayerPerk perk;
     LevelSettings settings;
     UIHandler ui;
+    Audio audio;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        audio = FindObjectOfType<Audio>();
         settings = FindObjectOfType<LevelSettings>();
         startYPos = transform.position.y;
         isMovingUp = true;
@@ -86,6 +90,7 @@ public class Pickup : MonoBehaviour
 
     void PickupEffect()
     {
+        audio.PlaySound(pickupSound, addedVolume);
 
         if (pickupType == PickupType.nuke)
         {

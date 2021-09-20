@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7135278637800412796}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RootNode (model correction matrix)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6894046155838791726}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mystery_Cube_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3472676719786139939}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148382087957841357}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GLTF_SceneRootNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8092536208635754653}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RootNode (gltf orientation matrix)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 166290075878664885}
   - component: {fileID: 3466956997035958877}
   - component: {fileID: 7397621301442113023}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mesh_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3470382826853182427}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mystery_Tapa_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5835148437685869365}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mysteri_Box_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1387205153514673701}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mystery_Box_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 8409184937346083492}
   - component: {fileID: 8409184937346083493}
   - component: {fileID: 8409184937346083494}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RandomBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,8 +424,10 @@ MonoBehaviour:
   startGunPos: {fileID: 8679004878977677902}
   endGunPos: {fileID: 8679004878990854671}
   costToOpen: 950
+  boxVolume: 50
   weaponChangeDelay: 0.2
   animationStopOffset: -1.1
+  timeBoxOpen: 10
 --- !u!82 &8409184937346083494
 AudioSource:
   m_ObjectHideFlags: 0
@@ -533,7 +535,7 @@ GameObject:
   - component: {fileID: 8679004878933996620}
   - component: {fileID: 8679004878933996621}
   - component: {fileID: 8679004878933996622}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TriggerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8679004878977677902}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: StartGunPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +620,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8679004878990854671}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EndGunPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +652,7 @@ GameObject:
   - component: {fileID: 5836056852138847570}
   - component: {fileID: 3776342442493070458}
   - component: {fileID: 401556695035431573}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mesh_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124112893289877621}
   - component: {fileID: 6540456415068992609}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

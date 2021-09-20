@@ -7,14 +7,17 @@ public class Weapon : MonoBehaviour
 {
     public enum WeaponType {auto, semiauto, shotgun}
 
+    [Header("Setup")]
     [SerializeField] GameObject explosiveRadiusPrefab;
     [SerializeField] ParticleSystem muzzleFlash;
-    [SerializeField] float explosiveRadius = 0f;
     [SerializeField] GameObject hitEffect;
+
+    [Header("Stats")]
+    [SerializeField] WeaponType weaponType;
+    [SerializeField] float explosiveRadius = 0f;
     [SerializeField] float weaponRange = 100f;
     [SerializeField] float weaponDamage = 25f;
     [SerializeField] float headshotMultiplier = 2;
-    [SerializeField] WeaponType weaponType;
     [SerializeField] int ammoCost = 1;
     [SerializeField] int hitsPerShot = 1;
     [SerializeField] float shotDelay = 0.5f;
@@ -23,6 +26,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] int maxAmmo = 300;
     [SerializeField] Weapon upgradedVersion;
 
+    [Header("Sound")]
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] AudioClip reloadSound;
+    [SerializeField] AudioClip buySound;
+    [SerializeField] bool usePAPSound;
+    [SerializeField] float addedVolume;
+    [SerializeField] float papSoundPitch;
+ 
+    [Header("Box Transform")]
     [SerializeField] float boxScale = 1;
     [SerializeField] Vector3 boxRotation;
 
@@ -33,6 +45,7 @@ public class Weapon : MonoBehaviour
 
     WeaponDelay weaponDelay;
     PlayerPoints points;
+    Audio audio;
     PlayerPerk perk;
     Animator animator;
     WeaponSwitcher switcher;
@@ -67,11 +80,17 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
+        audio = FindObjectOfType<Audio>();
         weaponDelay.AddWeapon(this);
         ammoInClip = maxAmmoInClip;
         storedAmmo = maxAmmo;
         RefreshAmmoUI();
         isDrawing = true;
+
+        if (buySound != null)
+        {
+            audio.PlaySound(buySound, addedVolume);
+        }
     }
 
     private void OnEnable()
@@ -123,6 +142,11 @@ public class Weapon : MonoBehaviour
         {
             Shoot();
         }
+
+        else if(ammoInClip == 0 && !isReloading)
+        {
+            Reload();
+        }
     }
 
     void Reload()
@@ -131,6 +155,7 @@ public class Weapon : MonoBehaviour
         {
             animator.speed = perk.reloadSpeed;
             animator.SetTrigger("Reload");
+            audio.PlaySound(reloadSound, 0);
             isReloading = true;
         }
     }
@@ -138,6 +163,15 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         MuzzleFlash();
+        if (usePAPSound)
+        {
+            audio.PlayPAPSound(shootSound, addedVolume, papSoundPitch);
+        }
+
+        else
+        {
+            audio.PlaySound(shootSound, addedVolume);
+        }
         animator.SetTrigger("Fire");
         ammoInClip = ammoInClip - ammoCost;
         RefreshAmmoUI();
@@ -150,6 +184,7 @@ public class Weapon : MonoBehaviour
             if (hit.transform == null) { return; }
 
             InstantiateHitEffect(hit);
+
             ProcessDamage(hit);
             ExplosiveDamage(hit.point);
         }

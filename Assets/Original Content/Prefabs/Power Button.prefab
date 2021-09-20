@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1641036340954987331}
   - component: {fileID: 1641036340954987333}
   - component: {fileID: 1641036340954987332}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 1641036341783658380}
   - component: {fileID: 1641036341783658379}
   - component: {fileID: 1641036341783658378}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Power Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}

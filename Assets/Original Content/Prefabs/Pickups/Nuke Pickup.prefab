@@ -83,6 +83,8 @@ MonoBehaviour:
   rotateSpeed: 40
   hoverSpeed: 0.05
   hoverAmount: 0.1
+  pickupSound: {fileID: 8300000, guid: 7eae82fbec9893c44b88acee6271509b, type: 3}
+  addedVolume: -0.5
 --- !u!135 &2206326147779097844
 SphereCollider:
   m_ObjectHideFlags: 0

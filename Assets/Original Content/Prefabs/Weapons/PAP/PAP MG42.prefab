@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7372061641430813710}
   - component: {fileID: 7372061641430813711}
   m_Layer: 0
-  m_Name: MG42 1
+  m_Name: PAP MG42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,19 +97,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e375444ff27f499eaa6052769ab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosiveRadiusPrefab: {fileID: 0}
   muzzleFlash: {fileID: 8816138021317753118}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
-  weaponRange: 100
-  weaponDamage: 25
-  headshotMultiplier: 2
   weaponType: 0
+  explosiveRadius: 0
+  weaponRange: 1000
+  weaponDamage: 260
+  headshotMultiplier: 5
   ammoCost: 1
   hitsPerShot: 1
-  shotDelay: 0.05
+  shotDelay: 0.044
   crosshairOffset: 94
-  maxAmmoInClip: 100
-  maxAmmo: 500
+  maxAmmoInClip: 150
+  maxAmmo: 900
   upgradedVersion: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 99ba540a8ecdbf94aaf70ac2662e3937, type: 3}
+  reloadSound: {fileID: 8300000, guid: da0ef2128ce861d408d5701060d53641, type: 3}
+  buySound: {fileID: 0}
+  usePAPSound: 0
+  addedVolume: -0.1
+  papSoundPitch: 3
   boxScale: 1
   boxRotation: {x: 0, y: -90, z: 0}
   isReloading: 0

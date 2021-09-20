@@ -11,10 +11,11 @@ public class Barrier : MonoBehaviour
     bool isBarrierClear = false;
 
     LevelSettings settings;
-
+    PlayerPoints points;
     // Start is called before the first frame update
     void Start()
     {
+        points = FindObjectOfType<PlayerPoints>();
         settings = FindObjectOfType<LevelSettings>();
         foreach(Transform transform in transform)
         {
@@ -79,6 +80,7 @@ public class Barrier : MonoBehaviour
             inactivePlanks.Remove(inactivePlanks[inactivePlanks.Count - 1]);
 
             isRepairDelayed = true;
+            points.AddPoints(10);
         }
     }
 

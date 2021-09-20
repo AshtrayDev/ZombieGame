@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
     Animator animator;
-    bool isThroughBarrier = false;
+    public bool isThroughBarrier = false;
     bool isClimbing = false;
     bool hasMoved = false;
     public bool isAttackingBarrier = false;

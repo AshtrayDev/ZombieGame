@@ -70,7 +70,12 @@ public class EnemyHealth : MonoBehaviour
         collider.enabled = false;
 
         isDead = true;
-        ChanceToSpawnPickup();
+
+        if (GetComponent<EnemyAI>().isThroughBarrier)
+        {
+            ChanceToSpawnPickup();
+        }
+
         GetComponent<Animator>().SetTrigger("death");
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<EnemyAI>().enabled = false;
@@ -86,7 +91,7 @@ public class EnemyHealth : MonoBehaviour
             Vector3 spawnPos = new Vector3(0, settings.pickupYOffset, 0);
             spawnPos = spawnPos + transform.position; //Setting spawn location
 
-            int random = Random.Range(0, settings.pickupsList.Length - 1); //Choosing random pickup
+            int random = Random.Range(0, settings.pickupsList.Length); //Choosing random pickup
 
             Instantiate(settings.pickupsList[random], spawnPos, Quaternion.identity, settings.pickupsTransform); //Actual spawning
         }
