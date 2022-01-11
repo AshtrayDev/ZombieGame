@@ -119,7 +119,9 @@ public class Pickup : MonoBehaviour
 
         if (pickupType == PickupType.maxAmmo)
         {
-            foreach (Weapon weapon in FindObjectsOfType<Weapon>())
+            
+
+            foreach (Weapon weapon in Resources.FindObjectsOfTypeAll<Weapon>())
             {
                 weapon.MaxAmmo();
             }

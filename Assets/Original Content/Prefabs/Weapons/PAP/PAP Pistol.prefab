@@ -651,11 +651,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408e375444ff27f499eaa6052769ab50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosiveRadiusPrefab: {fileID: 0}
+  explosiveRadiusPrefab: {fileID: 1742638120711156864, guid: 8f66129795883734ea2c73fc9bc8b280, type: 3}
   muzzleFlash: {fileID: 1162831578450331474}
   hitEffect: {fileID: 7926578694911690531, guid: 45e71ee9d28fda646853ce434f185b38, type: 3}
   weaponType: 1
-  explosiveRadius: 2
+  explosiveRadius: 3
   weaponRange: 1000
   weaponDamage: 1000
   headshotMultiplier: 1

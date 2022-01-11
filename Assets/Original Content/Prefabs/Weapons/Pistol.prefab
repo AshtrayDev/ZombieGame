@@ -663,8 +663,8 @@ MonoBehaviour:
   hitsPerShot: 1
   shotDelay: 0.1
   crosshairOffset: 32
-  maxAmmoInClip: 30
-  maxAmmo: 300
+  maxAmmoInClip: 8
+  maxAmmo: 32
   upgradedVersion: {fileID: 1603477376435146278, guid: 123ab6299dfa3794abf00cdd2732de9d, type: 3}
   shootSound: {fileID: 8300000, guid: 1c76b1edb9d3c5842a9853b538e077c3, type: 3}
   reloadSound: {fileID: 8300000, guid: 299109e8b9e9df1498d59a0dd29fbc32, type: 3}

@@ -93,8 +93,8 @@ MonoBehaviour:
   weaponType: 0
   explosiveRadius: 0
   weaponRange: 1000
-  weaponDamage: 110
-  headshotMultiplier: 4
+  weaponDamage: 300
+  headshotMultiplier: 6
   ammoCost: 1
   hitsPerShot: 1
   shotDelay: 0.05

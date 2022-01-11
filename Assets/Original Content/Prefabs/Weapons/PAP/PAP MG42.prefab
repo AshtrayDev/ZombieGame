@@ -117,7 +117,7 @@ MonoBehaviour:
   buySound: {fileID: 0}
   usePAPSound: 0
   addedVolume: -0.1
-  papSoundPitch: 3
+  papSoundPitch: 4
   boxScale: 1
   boxRotation: {x: 0, y: -90, z: 0}
   isReloading: 0

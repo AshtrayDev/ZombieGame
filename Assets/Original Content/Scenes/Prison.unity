@@ -6256,6 +6256,10 @@ PrefabInstance:
       propertyPath: upgradedVersion
       value: 
       objectReference: {fileID: 1603477376435146278, guid: 123ab6299dfa3794abf00cdd2732de9d, type: 3}
+    - target: {fileID: 773484143422996268, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+      propertyPath: muzzleFlash
+      value: 
+      objectReference: {fileID: 1453131459}
     - target: {fileID: 1158213362288193207, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
       propertyPath: field of view
       value: 90
@@ -10673,6 +10677,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7747318927763707319, guid: c0348fdc30ff42e43a7b94f58e1cfc96, type: 3}
   m_PrefabInstance: {fileID: 7747318927897267655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1453131459 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 925613691296462424, guid: b6f27b8ebaf8167439ca5ad68f75554e, type: 3}
+  m_PrefabInstance: {fileID: 961739160}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1455908072
 PrefabInstance:
@@ -17363,13 +17372,13 @@ MonoBehaviour:
   bottom: {fileID: 2189264064678330681}
   right: {fileID: 2189264064899911580}
   left: {fileID: 2189264064744448671}
-  size: 0.29
-  color: {r: 0, g: 1, b: 0.89243364, a: 1}
+  size: 0.33
+  color: {r: 0.22089028, g: 1, b: 0, a: 1}
   spread: 0
-  offset: 19.2
-  spreadMultiplier: 8
-  length: 0.0165
-  thickness: 0.00436
+  offset: 6.5
+  spreadMultiplier: 0
+  length: 0.0189
+  thickness: 0.00213
   crosshairChangeSpeed: 300
   testBullet: {fileID: 0}
 --- !u!1 &2189264064005060759
@@ -17513,7 +17522,7 @@ RectTransform:
   m_GameObject: {fileID: 2189264064264517279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00436, y: 0.0165, z: 0}
+  m_LocalScale: {x: 0.00213, y: 0.0189, z: 0}
   m_Children: []
   m_Father: {fileID: 2189264064005060756}
   m_RootOrder: 0
@@ -17536,7 +17545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.89243364, a: 1}
+  m_Color: {r: 0.22089028, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17722,7 +17731,7 @@ RectTransform:
   m_GameObject: {fileID: 2189264064678330681}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00436, y: 0.0165, z: 0}
+  m_LocalScale: {x: 0.00213, y: 0.0189, z: 0}
   m_Children: []
   m_Father: {fileID: 2189264064005060756}
   m_RootOrder: 1
@@ -17745,7 +17754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.89243364, a: 1}
+  m_Color: {r: 0.22089028, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17797,7 +17806,7 @@ RectTransform:
   m_GameObject: {fileID: 2189264064744448671}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071065, w: 0.7071071}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00436, y: 0.0165, z: 0}
+  m_LocalScale: {x: 0.00213, y: 0.0189, z: 0}
   m_Children: []
   m_Father: {fileID: 2189264064005060756}
   m_RootOrder: 3
@@ -17820,7 +17829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.89243364, a: 1}
+  m_Color: {r: 0.22089028, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17967,7 +17976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.89243364, a: 1}
+  m_Color: {r: 0.22089028, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -18019,7 +18028,7 @@ RectTransform:
   m_GameObject: {fileID: 2189264064899911580}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071065, w: 0.7071071}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00436, y: 0.0165, z: 0}
+  m_LocalScale: {x: 0.00213, y: 0.0189, z: 0}
   m_Children: []
   m_Father: {fileID: 2189264064005060756}
   m_RootOrder: 2
